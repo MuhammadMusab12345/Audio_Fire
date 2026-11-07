@@ -1,0 +1,222 @@
+/* ==========================================================================
+   SAVED PAGE (assets/css/saved.css) - scoped to .sv-page / .sv-*
+   Dark glass look that matches the rest of Audio Fire.
+   ========================================================================== */
+
+.sv-page {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  padding: calc(var(--nav-h, 72px) + clamp(28px, 5vw, 56px)) clamp(16px, 4vw, 40px) 90px;
+  color: #fff;
+}
+
+/* ---- header -------------------------------------------------------------- */
+.sv-head { max-width: 1080px; margin: 0 auto 26px; }
+.sv-title {
+  margin: 0 0 10px;
+  font: 800 clamp(30px, 6vw, 54px)/1.05 'Space Grotesk', 'Montserrat', sans-serif;
+  letter-spacing: -.01em;
+}
+.sv-grad {
+  background: linear-gradient(120deg, #c04be0, #ec4899 60%, #06b6d4);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+.sv-sub {
+  margin: 0;
+  max-width: 62ch;
+  color: rgba(255, 255, 255, .66);
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+.sv-sub a { color: #e9b6ff; font-weight: 600; }
+
+/* ---- tabs ---------------------------------------------------------------- */
+.sv-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 1080px;
+  margin: 0 auto 22px;
+}
+.sv-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .05);
+  color: rgba(255, 255, 255, .75);
+  font: 600 14px/1 'Space Grotesk', 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.sv-tab:hover { background: rgba(255, 255, 255, .1); color: #fff; }
+.sv-tab.on {
+  background: linear-gradient(120deg, rgba(192, 75, 224, .9), rgba(236, 72, 153, .9));
+  border-color: transparent;
+  color: #fff;
+}
+.sv-tab:focus-visible { outline: 2px solid #c04be0; outline-offset: 3px; }
+.sv-count {
+  min-width: 22px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .28);
+  font-size: 12px;
+  text-align: center;
+}
+
+/* ---- lists --------------------------------------------------------------- */
+.sv-panel { max-width: 1080px; margin: 0 auto; }
+.sv-panel[hidden] { display: none; }
+.sv-list { display: flex; flex-direction: column; gap: 12px; }
+.sv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* song row */
+.sv-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .05);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+.sv-row:hover { border-color: rgba(255, 255, 255, .2); transform: translateY(-1px); }
+.sv-playing {
+  border-color: rgba(192, 75, 224, .55);
+  background: rgba(192, 75, 224, .12);
+}
+.sv-thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex: 0 0 auto;
+  background: #16101f;
+}
+.sv-info { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1 1 auto; }
+.sv-info strong {
+  font: 700 15px/1.25 'Space Grotesk', 'Montserrat', sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sv-info span {
+  color: rgba(255, 255, 255, .55);
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* artist card */
+.sv-artist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 14px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .05);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  text-align: center;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.sv-artist:hover { border-color: rgba(255, 255, 255, .2); transform: translateY(-2px); }
+.sv-face {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #16101f;
+  border: 2px solid rgba(255, 255, 255, .18);
+}
+.sv-name {
+  font: 700 15px/1.2 'Space Grotesk', 'Montserrat', sans-serif;
+  word-break: break-word;
+}
+
+/* ---- buttons ------------------------------------------------------------- */
+.sv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+}
+.sv-artist .sv-actions { justify-content: center; }
+.sv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 15px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .06);
+  color: #fff;
+  font: 600 13px/1 'Space Grotesk', 'Montserrat', sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, transform .15s ease;
+}
+.sv-btn:hover  { background: rgba(255, 255, 255, .14); transform: translateY(-1px); }
+.sv-btn:active { transform: translateY(0); }
+.sv-btn:focus-visible { outline: 2px solid #c04be0; outline-offset: 2px; }
+.sv-primary {
+  background: linear-gradient(120deg, #c04be0, #ec4899);
+  border-color: transparent;
+}
+.sv-play.playing {
+  background: rgba(192, 75, 224, .3);
+  border-color: rgba(192, 75, 224, .6);
+}
+.sv-remove { color: rgba(255, 255, 255, .7); }
+.sv-remove:hover { color: #ffb3c4; border-color: rgba(244, 63, 94, .5); }
+
+/* ---- empty state --------------------------------------------------------- */
+.sv-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 54px 20px;
+  border: 1px dashed rgba(255, 255, 255, .16);
+  border-radius: 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, .62);
+  font-size: 14.5px;
+}
+.sv-empty p { margin: 0; max-width: 44ch; }
+.sv-empty-vinyl {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(255, 255, 255, .08) 0 1px, transparent 1px 7px),
+    radial-gradient(circle at 50% 50%, #c04be0 0 18%, #120a1a 19% 100%);
+  opacity: .7;
+}
+
+/* ---- responsive ---------------------------------------------------------- */
+@media (max-width: 560px) {
+  .sv-row { flex-wrap: wrap; }
+  .sv-info { flex-basis: calc(100% - 74px); }
+  .sv-actions { width: 100%; justify-content: stretch; }
+  .sv-actions > * { flex: 1 1 auto; }
+}

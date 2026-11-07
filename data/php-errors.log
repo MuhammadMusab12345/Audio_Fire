@@ -1,0 +1,520 @@
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[31-Oct-2026 08:22:24 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'thumb_path' in 'field list' in C:\xampp\htdocs\Opencode\includes\db.php:69
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(69): PDO->prepare('SELECT item_id ...')
+#1 C:\xampp\htdocs\Opencode\api\save.php(113): af_all('SELECT item_id ...', Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 69
+[31-Oct-2026 08:22:58 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'thumb_path' in 'field list' in C:\xampp\htdocs\Opencode\includes\db.php:69
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(69): PDO->prepare('SELECT item_id ...')
+#1 C:\xampp\htdocs\Opencode\api\save.php(113): af_all('SELECT item_id ...', Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 69
+[31-Oct-2026 08:23:11 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'thumb_path' in 'field list' in C:\xampp\htdocs\Opencode\includes\db.php:69
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(69): PDO->prepare('SELECT item_id ...')
+#1 C:\xampp\htdocs\Opencode\api\save.php(113): af_all('SELECT item_id ...', Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 69
+[31-Oct-2026 08:23:16 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'thumb_path' in 'field list' in C:\xampp\htdocs\Opencode\includes\db.php:69
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(69): PDO->prepare('SELECT item_id ...')
+#1 C:\xampp\htdocs\Opencode\api\save.php(113): af_all('SELECT item_id ...', Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 69
+[31-Oct-2026 09:08:21 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'thumb_path' in 'field list' in C:\xampp\htdocs\Opencode\includes\db.php:88
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(88): PDO->prepare('INSERT INTO `sa...')
+#1 C:\xampp\htdocs\Opencode\api\save.php(102): af_run('INSERT INTO `sa...', Array)
+#2 C:\xampp\htdocs\Opencode\api\save.php(146): af_add('saved_songs', 2, Array, 'song')
+#3 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 88
+[31-Oct-2026 09:08:37 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'thumb_path' in 'field list' in C:\xampp\htdocs\Opencode\includes\db.php:69
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(69): PDO->prepare('SELECT item_id ...')
+#1 C:\xampp\htdocs\Opencode\api\save.php(113): af_all('SELECT item_id ...', Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 69
+[31-Oct-2026 09:09:36 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'thumb_path' in 'field list' in C:\xampp\htdocs\Opencode\includes\db.php:69
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(69): PDO->prepare('SELECT item_id ...')
+#1 C:\xampp\htdocs\Opencode\api\save.php(113): af_all('SELECT item_id ...', Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 69
+[31-Oct-2026 09:10:23 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'thumb_path' in 'field list' in C:\xampp\htdocs\Opencode\includes\db.php:69
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(69): PDO->prepare('SELECT item_id ...')
+#1 C:\xampp\htdocs\Opencode\api\save.php(113): af_all('SELECT item_id ...', Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 69
+[AF db] SQLSTATE[HY000] [2006] MySQL server has gone away
+[AF db] SQLSTATE[HY000] [2006] MySQL server has gone away
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[01-Nov-2026 07:00:02 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 78
+[01-Nov-2026 07:00:04 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Opencode\admin\songs.php(40): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 78
+[01-Nov-2026 07:00:05 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Opencode\admin\artists.php(51): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 78
+[01-Nov-2026 07:00:06 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Opencode\admin\albums.php(33): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 78
+[01-Nov-2026 07:00:07 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Opencode\admin\users.php(52): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 78
+[01-Nov-2026 07:00:08 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Opencode\admin\reviews.php(35): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 78
+[01-Nov-2026 07:00:09 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Opencode\admin\messages.php(37): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 78
+[01-Nov-2026 07:00:10 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Opencode\admin\categories.php(32): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 78
+[01-Nov-2026 07:00:11 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Opencode\admin\settings.php(30): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 78
+[01-Nov-2026 07:00:12 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Opencode\admin\account.php(18): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 78
+[01-Nov-2026 07:00:13 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Opencode\admin\saved.php(36): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 78
+[01-Nov-2026 07:00:14 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Opencode\admin\videos.php(40): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Opencode\includes\db.php on line 78
+[01-Nov-2026 12:15:33 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 12:15:35 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 12:15:36 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 12:15:36 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 12:16:20 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 12:16:34 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 12:16:41 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 12:17:36 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 15:07:04 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 15:07:06 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 15:07:06 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 15:07:06 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 15:07:10 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 15:07:12 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 15:07:17 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[01-Nov-2026 15:17:05 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'audio_fire.videos' doesn't exist in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:78
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(78): PDO->prepare('SELECT COUNT(*)...')
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(48): af_row('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\includes\header.php(64): af_nav_count('videos')
+#3 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\index.php(373): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 78
+[AF db] SQLSTATE[HY000] [2002] An attempt was made to access a socket in a way forbidden by its access permissions
+[03-Nov-2026 09:36:51 Europe/Berlin] PHP Warning:  session_start(): open(\xampp\tmp\sess_u724jp41o06g0ppcr4gl8i2jkl, O_RDWR) failed: Permission denied (13) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[03-Nov-2026 09:36:51 Europe/Berlin] PHP Warning:  session_start(): Failed to read session data: files (path: \xampp\tmp) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[AF db] SQLSTATE[HY000] [2002] An attempt was made to access a socket in a way forbidden by its access permissions
+[03-Nov-2026 09:50:48 Europe/Berlin] PHP Warning:  session_start(): open(\xampp\tmp\sess_q22nsp9fcdi3n8njvn0753u573, O_RDWR) failed: Permission denied (13) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[03-Nov-2026 09:50:48 Europe/Berlin] PHP Warning:  session_start(): Failed to read session data: files (path: \xampp\tmp) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[AF db] SQLSTATE[HY000] [2002] An attempt was made to access a socket in a way forbidden by its access permissions
+[03-Nov-2026 09:51:56 Europe/Berlin] PHP Warning:  session_start(): open(\xampp\tmp\sess_e6livratdm14iq71f5rtr9l59q, O_RDWR) failed: Permission denied (13) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[03-Nov-2026 09:51:56 Europe/Berlin] PHP Warning:  session_start(): Failed to read session data: files (path: \xampp\tmp) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[03-Nov-2026 09:54:12 Europe/Berlin] PHP Warning:  require(C:\xampp\htdocs\Final Audio Fire Website\Opencode/partials/album-hero.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php on line 26
+[03-Nov-2026 09:54:12 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\Final Audio Fire Website\Opencode/partials/album-hero.php' (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php:26
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php on line 26
+[03-Nov-2026 09:54:16 Europe/Berlin] PHP Warning:  require(C:\xampp\htdocs\Final Audio Fire Website\Opencode/partials/album-hero.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php on line 26
+[03-Nov-2026 09:54:16 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\Final Audio Fire Website\Opencode/partials/album-hero.php' (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php:26
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php on line 26
+[03-Nov-2026 09:54:19 Europe/Berlin] PHP Warning:  require(C:\xampp\htdocs\Final Audio Fire Website\Opencode/partials/album-hero.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php on line 26
+[03-Nov-2026 09:54:19 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\Final Audio Fire Website\Opencode/partials/album-hero.php' (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php:26
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php on line 26
+[03-Nov-2026 09:54:20 Europe/Berlin] PHP Warning:  require(C:\xampp\htdocs\Final Audio Fire Website\Opencode/partials/album-hero.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php on line 26
+[03-Nov-2026 09:54:20 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\Final Audio Fire Website\Opencode/partials/album-hero.php' (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php:26
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php on line 26
+[03-Nov-2026 09:54:37 Europe/Berlin] PHP Warning:  require(C:\xampp\htdocs\Final Audio Fire Website\Opencode/partials/album-hero.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php on line 26
+[03-Nov-2026 09:54:37 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\Final Audio Fire Website\Opencode/partials/album-hero.php' (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php:26
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\album.php on line 26
+[AF db] SQLSTATE[HY000] [2002] An attempt was made to access a socket in a way forbidden by its access permissions
+[03-Nov-2026 09:55:08 Europe/Berlin] PHP Warning:  session_start(): open(\xampp\tmp\sess_6r2ap1rper11uobsljr3on4pr9, O_RDWR) failed: Permission denied (13) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[03-Nov-2026 09:55:08 Europe/Berlin] PHP Warning:  session_start(): Failed to read session data: files (path: \xampp\tmp) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[AF db] SQLSTATE[HY000] [2002] An attempt was made to access a socket in a way forbidden by its access permissions
+[03-Nov-2026 09:55:28 Europe/Berlin] PHP Warning:  session_start(): open(\xampp\tmp\sess_o4f1ei627sipd5qovcgm6lqnlj, O_RDWR) failed: Permission denied (13) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[03-Nov-2026 09:55:28 Europe/Berlin] PHP Warning:  session_start(): Failed to read session data: files (path: \xampp\tmp) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[AF db] SQLSTATE[HY000] [2002] An attempt was made to access a socket in a way forbidden by its access permissions
+[03-Nov-2026 09:55:42 Europe/Berlin] PHP Warning:  session_start(): open(\xampp\tmp\sess_7d9r0tpdb2s3q22e4cvnrj6k0b, O_RDWR) failed: Permission denied (13) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[03-Nov-2026 09:55:42 Europe/Berlin] PHP Warning:  session_start(): Failed to read session data: files (path: \xampp\tmp) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[AF db] SQLSTATE[HY000] [2002] An attempt was made to access a socket in a way forbidden by its access permissions
+[03-Nov-2026 09:56:04 Europe/Berlin] PHP Warning:  session_start(): open(\xampp\tmp\sess_r2nspvrkmfh43qd5kv5cplph00, O_RDWR) failed: Permission denied (13) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[03-Nov-2026 09:56:04 Europe/Berlin] PHP Warning:  session_start(): Failed to read session data: files (path: \xampp\tmp) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[AF db] SQLSTATE[HY000] [2002] An attempt was made to access a socket in a way forbidden by its access permissions
+[03-Nov-2026 09:57:26 Europe/Berlin] PHP Warning:  session_start(): open(\xampp\tmp\sess_6lkf44r07abfmpghrkog9u2lk7, O_RDWR) failed: Permission denied (13) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[03-Nov-2026 09:57:26 Europe/Berlin] PHP Warning:  session_start(): Failed to read session data: files (path: \xampp\tmp) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[AF db] SQLSTATE[HY000] [2002] An attempt was made to access a socket in a way forbidden by its access permissions
+[03-Nov-2026 09:59:11 Europe/Berlin] PHP Warning:  session_start(): open(\xampp\tmp\sess_mr7iseljcinc75la5haaume05n, O_RDWR) failed: Permission denied (13) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[03-Nov-2026 09:59:11 Europe/Berlin] PHP Warning:  session_start(): Failed to read session data: files (path: \xampp\tmp) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[AF db] SQLSTATE[HY000] [2002] An attempt was made to access a socket in a way forbidden by its access permissions
+[03-Nov-2026 10:02:15 Europe/Berlin] PHP Warning:  session_start(): open(\xampp\tmp\sess_rnouvh5v53am6jukmvkb5amhfc, O_RDWR) failed: Permission denied (13) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[03-Nov-2026 10:02:15 Europe/Berlin] PHP Warning:  session_start(): Failed to read session data: files (path: \xampp\tmp) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[AF db] SQLSTATE[HY000] [2002] An attempt was made to access a socket in a way forbidden by its access permissions
+[03-Nov-2026 10:13:39 Europe/Berlin] PHP Warning:  session_start(): open(\xampp\tmp\sess_udklje7ic00e97q811iuqocakl, O_RDWR) failed: Permission denied (13) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[03-Nov-2026 10:13:39 Europe/Berlin] PHP Warning:  session_start(): Failed to read session data: files (path: \xampp\tmp) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 38
+[04-Nov-2026 22:02:02 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 25
+[04-Nov-2026 22:02:02 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 43
+[04-Nov-2026 22:02:02 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 25
+[04-Nov-2026 22:02:02 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 43
+[04-Nov-2026 22:02:02 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 25
+[04-Nov-2026 22:02:02 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 43
+[04-Nov-2026 22:02:03 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 25
+[04-Nov-2026 22:02:03 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 43
+[04-Nov-2026 22:02:03 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\Users\muham\AppData\Local\Temp\opencode\api_one.php:20) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 93
+[04-Nov-2026 22:02:03 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\Users\muham\AppData\Local\Temp\opencode\api_one.php:20) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 94
+[04-Nov-2026 22:02:03 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 25
+[04-Nov-2026 22:02:03 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 43
+[04-Nov-2026 22:02:03 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 25
+[04-Nov-2026 22:02:03 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 43
+[04-Nov-2026 22:02:03 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 25
+[04-Nov-2026 22:02:03 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 43
+[04-Nov-2026 22:02:03 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\Users\muham\AppData\Local\Temp\opencode\api_one.php:32) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 93
+[04-Nov-2026 22:02:03 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\Users\muham\AppData\Local\Temp\opencode\api_one.php:32) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 94
+[04-Nov-2026 22:02:04 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 25
+[04-Nov-2026 22:02:04 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 43
+[04-Nov-2026 22:02:04 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 25
+[04-Nov-2026 22:02:04 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 43
+[04-Nov-2026 22:02:04 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 25
+[04-Nov-2026 22:02:04 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\api.php on line 43
+[04-Nov-2026 22:02:43 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\Users\muham\AppData\Local\Temp\opencode\api_one.php:32) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 93
+[04-Nov-2026 22:02:43 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\Users\muham\AppData\Local\Temp\opencode\api_one.php:32) in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\auth.php on line 94
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[AF db] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[06-Nov-2026 04:11:57 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function af_api_col() in C:\Users\muham\AppData\Local\Temp\opencode\coltest.php:4
+Stack trace:
+#0 {main}
+  thrown in C:\Users\muham\AppData\Local\Temp\opencode\coltest.php on line 4
+[06-Nov-2026 04:20:35 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'rows FROM albums WHERE title LIKE 'ZZ%'' at line 1 in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:71
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(71): PDO->prepare('SELECT id,title...')
+#1 C:\Users\muham\AppData\Local\Temp\opencode\zz.php(3): af_all('SELECT id,title...')
+#2 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 71
+[06-Nov-2026 04:20:36 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'rows FROM albums WHERE title LIKE 'ZZ%'' at line 1 in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php:71
+Stack trace:
+#0 C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php(71): PDO->prepare('SELECT id,title...')
+#1 C:\Users\muham\AppData\Local\Temp\opencode\zz.php(3): af_all('SELECT id,title...')
+#2 {main}
+  thrown in C:\xampp\htdocs\Final Audio Fire Website\Opencode\includes\db.php on line 71

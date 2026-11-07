@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playlists | Audio Fire</title>
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/navbar.css">
+<link rel="stylesheet" href="assets/css/footer.css">
+<style>
+  .placeholder-main {
+    position: relative;
+    z-index: 1;
+    min-height: 62vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: calc(var(--nav-h, 72px) + 60px) 24px 80px;
+  }
+  .placeholder-main h1 {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: clamp(40px, 7vw, 92px);
+    line-height: .95;
+    letter-spacing: -.01em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .placeholder-main p {
+    margin-top: 16px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, .6);
+  }
+</style>
+</head>
+<body>
+
+<div id="bg-layer" aria-hidden="true"></div>
+
+<!-- ===== SHARED NAVBAR (assets/css/navbar.css + assets/js/navbar.js) ===== -->
+<nav class="navbar-container" aria-label="Main navigation">
+  <a href="index.php" class="brand-logo" aria-label="Home">
+    <img src="assets/music-logo.png" alt="Audio Fire logo">
+  </a>
+  <div class="nav-links">
+    <div class="active-indicator" id="indicator"></div>
+    <a href="index.php" class="nav-item">Home</a>
+    <a href="singers.php" class="nav-item">Singers</a>
+    <a href="songs.php" class="nav-item">Songs</a>
+    <a href="music.php" class="nav-item">Music</a>
+    <a href="album.php" class="nav-item">Album</a>
+    <a href="reviews.php" class="nav-item">Reviews</a>
+    <a href="contact.php" class="nav-item">Contact</a>
+  </div>
+  <div class="actions-container">
+    <button class="icon-btn" id="savedToggle" type="button" aria-label="Saved songs" title="Saved Songs">
+      <svg viewBox="0 0 24 24"><path d="M6 4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21l-6-4-6 4z"></path></svg>
+    </button>
+    <button class="icon-btn" id="searchToggle" type="button" aria-label="Toggle search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+    </button>
+    <div class="search-box" id="searchBox"><input class="search-input" type="search" placeholder="Search..." aria-label="Search music"></div>
+    <a href="account.php#signin" class="account-btn">Account</a>
+    <button class="icon-btn menu-btn" id="menuToggle" type="button" aria-label="Open menu">
+      <svg viewBox="0 0 24 24"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="overlay" id="overlay"></div>
+<aside class="sidebar" id="sidebar" aria-label="Mobile navigation">
+  <div class="sidebar-header">
+    <div class="sidebar-brand"><img src="assets/music-logo.png" alt=""> Audio Fire</div>
+    <button class="icon-btn" id="closeSidebar" type="button" aria-label="Close menu"><svg viewBox="0 0 24 24"><path d="m18 6-12 12"></path><path d="m6 6 12 12"></path></svg></button>
+  </div>
+  <nav class="sidebar-links">
+    <a href="index.php"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"></path><path d="M5 9v12h14V9"></path></svg>Home</a>
+    <a href="singers.php"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M5 21v-2a7 7 0 0 1 14 0v2"></path></svg>Singers</a>
+    <a href="songs.php"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>Songs</a>
+    <a href="music.php"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>Music</a>
+    <a href="album.php"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"></rect><circle cx="12" cy="12" r="4"></circle></svg>Album</a>
+    <a href="reviews.php"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.4l6-.9z"></path></svg>Reviews</a>
+    <a href="contact.php"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="M3 8l9 6 9-6"></path></svg>Contact</a>
+  </nav>
+  <div class="sidebar-bottom">
+    <a href="account.php#signin">Account / Login</a>
+    <button class="secondary" id="mobileSaved" type="button">View Saved Songs</button>
+  </div>
+</aside>
+
+<aside class="sidebar" id="savedPanel" aria-label="Saved songs">
+  <div class="sidebar-header">
+    <span class="sidebar-brand">Saved Songs</span>
+    <button class="icon-btn" id="closeSaved" type="button" aria-label="Close saved songs"><svg viewBox="0 0 24 24"><path d="m18 6-12 12"></path><path d="m6 6 12 12"></path></svg></button>
+  </div>
+  <p style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.6">Your saved songs will appear here.</p>
+  <div class="saved-list" id="savedList"></div>
+  <div class="sidebar-bottom"><button class="secondary" id="clearSaved" type="button">Clear Saved Songs</button></div>
+</aside>
+
+<main class="placeholder-main" id="main">
+  <div>
+    <h1>Playlists</h1>
+    <p>Coming soon &mdash; this page is being built.</p>
+  </div>
+</main>
+
+<!-- ===== SHARED FOOTER (assets/css/footer.css + assets/js/footer.js) ===== -->
+<div class="footer-wrap">
+<footer class="footer" id="footer">
+  <canvas id="ripple" aria-hidden="true"></canvas>
+
+  <nav class="cols" aria-label="Footer">
+    <div class="col brand">
+      <a href="index.php" class="footer-logo" aria-label="Audio Fire home">
+        <img src="assets/music-logo.png" alt="Audio Fire logo">
+      </a>
+      <p class="tag">Discover, play and save the songs you love.</p>
+      <div class="social" aria-label="Social media">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg></a>
+        <a href="#" aria-label="X (Twitter)">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 3H22l-7.1 8.1L23 21h-6.4l-5-6.5L5.9 21H2.8l7.6-8.7L2.5 3h6.5l4.5 5.9L18.9 3zm-1.1 16.2h1.7L7.7 4.7H5.9l11.9 14.5z"/></svg></a>
+      </div>
+    </div>
+    <div class="col">
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="singers.php">Singers</a></li>
+        <li><a href="songs.php">Songs</a></li>
+        <li><a href="album.php">Albums</a></li>
+        <li><a href="playlists.html">Playlists</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Listen</h3>
+      <ul>
+        <li><a href="index.php#latest-songs">Latest Songs</a></li>
+        <li><a href="singers.php">Top Artists</a></li>
+        <li><a href="songs.php">New Releases</a></li>
+        <li><a href="#" id="footerSaved">Saved Songs</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Support</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="contact.php">Contact</a></li>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="rule"></div>
+
+  <div class="bottom">
+    <p class="legal">&copy; 2026 Audio Fire. All rights reserved.</p>
+    <p class="made">Made for music lovers.</p>
+  </div>
+</footer>
+</div>
+
+  <script src="assets/js/site.js"></script>
+<script src="assets/js/save.js"></script>
+<script src="assets/js/navbar.js"></script>
+  <script src="assets/js/footer.js"></script>
+</body>
+</html>

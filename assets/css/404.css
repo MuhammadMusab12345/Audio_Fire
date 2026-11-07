@@ -1,0 +1,152 @@
+/* ==========================================================================
+   404 PAGE (assets/css/404.css) - scoped to .nf-page and its children
+   Same glass / vinyl language as the rest of Audio Fire.
+   ========================================================================== */
+
+.nf-page {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: calc(var(--nav-h, 72px) + 40px) 20px 80px;
+  overflow: hidden;
+  color: #fff;
+  background: #0a0710;
+}
+
+/* soft purple / pink aurora behind the card */
+.nf-glow {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(40% 40% at 30% 30%, rgba(192, 75, 224, .22), transparent 70%),
+    radial-gradient(35% 35% at 75% 65%, rgba(236, 72, 153, .16), transparent 70%);
+  filter: blur(10px);
+  pointer-events: none;
+  animation: nf-breathe 12s ease-in-out infinite alternate;
+}
+@keyframes nf-breathe {
+  from { transform: translate3d(-2%, -1%, 0) scale(1); }
+  to   { transform: translate3d(2%, 2%, 0) scale(1.06); }
+}
+
+.nf-card {
+  position: relative;
+  width: min(560px, 100%);
+  padding: clamp(28px, 5vw, 52px);
+  border-radius: 26px;
+  text-align: center;
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(255, 255, 255, .12);
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .8);
+}
+
+/* ---- vinyl ------------------------------------------------------------- */
+.nf-vinyl {
+  position: relative;
+  width: 148px;
+  height: 116px;
+  margin: 0 auto 18px;
+}
+.nf-disc {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 116px;
+  height: 116px;
+  margin: -58px 0 0 -58px;
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(255, 255, 255, .07) 0 1px, transparent 1px 9px),
+    radial-gradient(circle at 50% 50%, #c04be0 0 16%, #120a1a 17% 100%);
+  animation: nf-spin 7s linear infinite;
+  box-shadow: 0 12px 30px -10px rgba(192, 75, 224, .6);
+}
+.nf-hole {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: #0a0710;
+}
+@keyframes nf-spin { to { transform: rotate(360deg); } }
+/* tonearm nudged aside - the needle lost the groove */
+.nf-arm {
+  position: absolute;
+  right: -6px;
+  top: -8px;
+  width: 74px;
+  height: 8px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, .55), rgba(255, 255, 255, .15));
+  transform: rotate(38deg);
+  transform-origin: right center;
+}
+
+/* ---- copy -------------------------------------------------------------- */
+.nf-code {
+  margin: 0;
+  font: 800 clamp(56px, 12vw, 96px)/1 'Space Grotesk', 'Montserrat', sans-serif;
+  letter-spacing: .06em;
+  background: linear-gradient(120deg, #c04be0, #ec4899 60%, #06b6d4);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+.nf-title {
+  margin: 6px 0 10px;
+  font: 800 clamp(22px, 4vw, 30px)/1.15 'Space Grotesk', 'Montserrat', sans-serif;
+}
+.nf-title span { color: #c04be0; }
+.nf-text {
+  margin: 0 auto 26px;
+  max-width: 40ch;
+  color: rgba(255, 255, 255, .68);
+  font-size: clamp(14px, 1.6vw, 16px);
+  line-height: 1.65;
+}
+
+/* ---- buttons ----------------------------------------------------------- */
+.nf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+.nf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;                      /* comfortable tap target */
+  padding: 0 22px;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .06);
+  color: #fff;
+  font: 600 14px/1 'Space Grotesk', 'Montserrat', sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+.nf-btn:hover  { transform: translateY(-2px); background: rgba(255, 255, 255, .12); }
+.nf-btn:active { transform: translateY(0); }
+.nf-btn:focus-visible {
+  outline: 2px solid #c04be0;
+  outline-offset: 3px;
+}
+.nf-primary {
+  background: linear-gradient(120deg, #c04be0, #ec4899);
+  border-color: transparent;
+}
+.nf-primary:hover { background: linear-gradient(120deg, #d264ee, #f76ba8); }
+.nf-ghost { background: transparent; }
+
+/* ---- reduced motion ---------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .nf-disc, .nf-glow { animation: none; }
+}

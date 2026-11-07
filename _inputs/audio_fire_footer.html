@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="purple">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audio Fire – Footer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#14072a; --bg2:#4c1d95; --o1:#a855f7; --o2:#ec4899; --o3:#6366f1;
+  --ink:#f6f3fb; --dim:rgba(246,243,251,.74);
+}
+html[data-theme="green"]{
+  --bg1:#031a13; --bg2:#0d6b49; --o1:#22c55e; --o2:#14b8a6; --o3:#a3e635;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;display:flex;flex-direction:column;font-family:Manrope,system-ui,sans-serif;color:var(--ink);
+  background:linear-gradient(160deg,var(--bg1),var(--bg2));background-attachment:fixed;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  transition:background .6s}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:6px}
+
+/* Soft colour orbs behind the glass so the blur has something to refract */
+.orbs{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.orbs i{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;transition:background .6s}
+.orbs i:nth-child(1){width:46vw;height:46vw;left:-8vw;bottom:-10vw;background:var(--o1)}
+.orbs i:nth-child(2){width:38vw;height:38vw;right:-6vw;bottom:2vw;background:var(--o2)}
+.orbs i:nth-child(3){width:30vw;height:30vw;left:38vw;bottom:-14vw;background:var(--o3)}
+
+/* demo page area (replace with your site) */
+.page{flex:1;display:grid;place-items:center;text-align:center;padding:90px 24px 70px;color:var(--dim)}
+.page h2{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(28px,5vw,54px);color:var(--ink);margin-bottom:10px}
+.theme{position:fixed;top:16px;right:16px;display:flex;gap:6px;padding:6px;border-radius:99px;z-index:5;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.theme button{border:0;background:none;color:var(--ink);font:600 13px Manrope,sans-serif;padding:7px 14px;border-radius:99px;cursor:pointer}
+.theme button[aria-pressed="true"]{background:rgba(255,255,255,.25)}
+
+/* ================= FOOTER ================= */
+.footer-wrap{padding:0 clamp(8px,2vw,28px)}
+.footer{
+  position:relative;isolation:isolate;overflow:hidden;
+  border-radius:44px 44px 0 0;           /* only the two top corners are round */
+  padding:clamp(32px,4vw,56px) clamp(22px,3.4vw,48px) var(--wm-h,clamp(120px,16vw,260px));
+  background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.05) 55%,rgba(255,255,255,.03));
+  -webkit-backdrop-filter:blur(26px) saturate(1.7) brightness(1.08);backdrop-filter:blur(26px) saturate(1.7) brightness(1.08);
+  border:1px solid rgba(255,255,255,.28);border-bottom:0;
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,.55),
+    inset 0 -30px 60px -30px rgba(255,255,255,.12),
+    inset 1px 0 0 rgba(255,255,255,.18), inset -1px 0 0 rgba(255,255,255,.18),
+    0 -24px 70px -30px rgba(0,0,0,.45);
+}
+/* liquid specular light that follows the cursor */
+.footer::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(520px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.2),transparent 60%);
+  opacity:.9;transition:opacity .4s}
+/* thin refraction rim on top edge */
+.footer::after{content:"";position:absolute;left:6%;right:6%;top:0;height:1px;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent)}
+#ripple{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+
+.cols{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:28px 24px}
+.col h3{font-size:18px;font-weight:700;margin-bottom:18px;letter-spacing:.2px}
+.col ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+.col a{font-size:14.5px;color:var(--dim);display:inline-block;transition:color .25s,transform .25s}
+.col a:hover{color:#fff;transform:translateX(4px)}
+.contact a{overflow-wrap:anywhere}
+
+.rule{height:1px;margin:clamp(26px,3vw,40px) 0 24px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent)}
+.bottom{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap}
+.legal address{font-style:normal;font-size:15px;font-weight:500;line-height:1.55;max-width:38ch;margin-bottom:10px}
+.legal p{font-size:15px;font-weight:500}
+.social{display:flex;gap:10px}
+.social a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4);
+  transition:transform .3s cubic-bezier(.22,1,.36,1),background .3s}
+.social a:hover{transform:translateY(-4px) scale(1.08);background:rgba(255,255,255,.28)}
+.social svg{width:19px;height:19px}
+
+@media (max-width:1000px){.cols{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:620px){
+  .footer{border-radius:30px 30px 0 0}
+  .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bottom{flex-direction:column}
+}
+@media (prefers-reduced-motion:reduce){.col a,.social a{transition:none}}
+</style>
+</head>
+<body>
+<div class="orbs"><i></i><i></i><i></i></div>
+
+<div class="theme" role="group" aria-label="Demo background colour">
+  <button data-t="purple" aria-pressed="true">Purple</button>
+  <button data-t="green" aria-pressed="false">Green</button>
+</div>
+
+<main class="page"><div><h2>Your page content</h2><p>Scroll down and move your cursor over the footer.</p></div></main>
+
+<div class="footer-wrap">
+<footer class="footer" id="footer">
+  <canvas id="ripple" aria-hidden="true"></canvas>
+
+  <nav class="cols" aria-label="Footer">
+    <div class="col">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#about">About us</a></li>
+        <li><a href="#careers">Careers</a></li>
+        <li><a href="#press">Press</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Discover</h3>
+      <ul>
+        <li><a href="#trending">Trending songs</a></li>
+        <li><a href="#new">New releases</a></li>
+        <li><a href="#playlists">Playlists</a></li>
+        <li><a href="#artists">Top artists</a></li>
+        <li><a href="#charts">Charts</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#newsletter">Newsletter</a></li>
+        <li><a href="#app">Mobile app</a></li>
+        <li><a href="#help">Help center</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="#privacy">Privacy</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#terms">Terms of use</a></li>
+        <li><a href="#licensing">Music licensing</a></li>
+        <li><a href="#cookies">Cookies</a></li>
+      </ul>
+    </div>
+    <div class="col contact">
+      <h3>Contact</h3>
+      <ul>
+        <li><a href="mailto:support@audiofire.com">support@audiofire.com</a></li>
+        <li><a href="tel:+000123456789">+00 123 456 789</a></li>
+        <li><a href="tel:08002834347">0800-AUDIOFIRE</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="rule"></div>
+
+  <div class="bottom">
+    <div class="legal">
+      <address>Audio Fire HQ, 24 Studio Lane, Your City, Your Country</address>
+      <p>© 2026 Audio Fire. All rights reserved.</p>
+    </div>
+    <div class="social" aria-label="Social media">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 3H22l-7.1 8.1L23 21h-6.4l-5-6.5L5.9 21H2.8l7.6-8.7L2.5 3h6.5l4.5 5.9L18.9 3zm-1.1 16.2h1.7L7.7 4.7H5.9l11.9 14.5z"/></svg></a>
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg></a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.5-3.2h-3.2V7.8c0-.9.4-1.7 1.8-1.7h1.5V3.3S15.1 3 14 3c-2.6 0-4.2 1.6-4.2 4.4v2.4H7v3.2h2.8v8h3.7z"/></svg></a>
+      <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M7 9.4c3.6-1 7.6-.7 10.6 1M7.6 12.8c3-.8 6-.5 8.5 1M8.2 16c2.4-.6 4.6-.4 6.5.7"/></svg></a>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script>
+const NAME = 'Audio Fire';
+const OPT = { distortionStrength:.075, waveCount:100, waveSize:60, waveFadeMultiplier:.95, waveGrowth:.155, waveSpawnThreshold:.1 };
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---- demo theme switch ---- */
+document.querySelectorAll('.theme button').forEach(b=>b.addEventListener('click',()=>{
+  document.documentElement.dataset.theme=b.dataset.t;
+  document.querySelectorAll('.theme button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+}));
+
+/* ---- glass light follows cursor ---- */
+const footer=document.getElementById('footer');
+footer.addEventListener('pointermove',e=>{
+  const r=footer.getBoundingClientRect();
+  footer.style.setProperty('--mx',(e.clientX-r.left)+'px'); footer.style.setProperty('--my',(e.clientY-r.top)+'px');
+});
+
+/* ---- water-ripple (vanilla WebGL version of ImageRippleEffect) over the big name ---- */
+(function(){
+  const cv=document.getElementById('ripple');
+  const gl=cv.getContext('webgl',{premultipliedAlpha:true,alpha:true});
+  if(!gl) return;
+  const txt=document.createElement('canvas'), tctx=txt.getContext('2d');
+  const map=document.createElement('canvas'), mctx=map.getContext('2d');
+  let W=0,H=0,dpr=1,MS=3,waves=[],last=null,running=false,dirty=true;
+
+  const vs='attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;gl_Position=vec4(p,0.,1.);}';
+  const fs=`precision mediump float;varying vec2 v;uniform sampler2D t,m;uniform vec2 px;uniform float s;
+  void main(){
+    float hx=texture2D(m,v+vec2(px.x,0.)).r-texture2D(m,v-vec2(px.x,0.)).r;
+    float hy=texture2D(m,v+vec2(0.,px.y)).r-texture2D(m,v-vec2(0.,px.y)).r;
+    vec2 g=vec2(hx,hy);
+    vec4 c=texture2D(t,v+g*s*2.2);
+    float sp=clamp(length(g)*1.5,0.,1.)*.22;           /* glassy sheen on the ripple crest */
+    gl_FragColor=vec4(c.rgb+vec3(sp),clamp(c.a+sp,0.,1.));
+  }`;
+  const sh=(type,src)=>{const o=gl.createShader(type);gl.shaderSource(o,src);gl.compileShader(o);return o;};
+  const prog=gl.createProgram();gl.attachShader(prog,sh(gl.VERTEX_SHADER,vs));gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(prog);gl.useProgram(prog);
+  const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  const loc=gl.getAttribLocation(prog,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  const mkTex=u=>{const t=gl.createTexture();gl.activeTexture(gl.TEXTURE0+u);gl.bindTexture(gl.TEXTURE_2D,t);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);return t;};
+  mkTex(0);mkTex(1);
+  gl.uniform1i(gl.getUniformLocation(prog,'t'),0);gl.uniform1i(gl.getUniformLocation(prog,'m'),1);
+  gl.uniform1f(gl.getUniformLocation(prog,'s'),OPT.distortionStrength);
+  const uPx=gl.getUniformLocation(prog,'px');
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);
+  gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+
+  function drawText(){
+    tctx.clearRect(0,0,txt.width,txt.height);
+    const fam='Syne,"Arial Black",sans-serif';
+    tctx.font=`800 100px ${fam}`;
+    const w100=tctx.measureText(NAME).width;
+    const fsz=(txt.width-48*dpr)/w100*100;                 /* name spans the full footer width */
+    tctx.font=`800 ${fsz}px ${fam}`; tctx.textAlign='center'; tctx.textBaseline='alphabetic';
+    const base=txt.height+fsz*.1;                          /* slightly cropped at the bottom edge */
+    const g=tctx.createLinearGradient(0,base-fsz*.78,0,txt.height);
+    g.addColorStop(0,'rgba(255,255,255,.42)'); g.addColorStop(1,'rgba(255,255,255,.04)');
+    tctx.fillStyle=g; tctx.fillText(NAME,txt.width/2,base);
+    const hpx=fsz*.78*.86/dpr;                             /* visible height of the name, in CSS px */
+    footer.style.setProperty('--wm-h',Math.round(hpx)+'px');
+    gl.activeTexture(gl.TEXTURE0);gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,true);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,txt);
+  }
+  function resize(){
+    const r=footer.getBoundingClientRect(); if(!r.width) return;
+    dpr=Math.min(devicePixelRatio||1,1.5); W=r.width;H=r.height;
+    cv.width=txt.width=Math.round(W*dpr); cv.height=txt.height=Math.round(H*dpr);
+    map.width=Math.ceil(W/MS); map.height=Math.ceil(H/MS);
+    gl.viewport(0,0,cv.width,cv.height);
+    gl.uniform2f(uPx,1/map.width,1/map.height);
+    drawText(); dirty=true; kick();
+  }
+  function drawMap(){
+    mctx.globalCompositeOperation='source-over'; mctx.fillStyle='#000'; mctx.fillRect(0,0,map.width,map.height);
+    mctx.globalCompositeOperation='lighter';
+    for(const w of waves){
+      const rad=OPT.waveSize*(1+w.age*OPT.waveGrowth)/MS, x=w.x/MS, y=w.y/MS;
+      const g=mctx.createRadialGradient(x,y,0,x,y,rad);
+      g.addColorStop(0,'rgba(255,255,255,0)'); g.addColorStop(.55,`rgba(255,255,255,${w.a})`); g.addColorStop(1,'rgba(255,255,255,0)');
+      mctx.fillStyle=g; mctx.fillRect(x-rad,y-rad,rad*2,rad*2);
+    }
+    gl.activeTexture(gl.TEXTURE1);gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,false);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,map);
+  }
+  function frame(){
+    for(const w of waves){ w.age++; w.a*=OPT.waveFadeMultiplier; }
+    waves=waves.filter(w=>w.a>.015);
+    if(waves.length||dirty){
+      drawMap(); gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.drawArrays(gl.TRIANGLE_STRIP,0,4); dirty=!!waves.length;
+      requestAnimationFrame(frame);
+    } else running=false;
+  }
+  function kick(){ if(!running){running=true;requestAnimationFrame(frame);} }
+
+  footer.addEventListener('pointermove',e=>{
+    if(reduce) return;
+    const r=footer.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top;
+    if(last && Math.hypot(x-last.x,y-last.y)<OPT.waveSpawnThreshold*140) return;
+    last={x,y};
+    waves.push({x,y,age:0,a:.55}); if(waves.length>OPT.waveCount) waves.shift();
+    kick();
+  });
+  footer.addEventListener('pointerleave',()=>{last=null;});
+  new ResizeObserver(resize).observe(footer);
+  if(document.fonts&&document.fonts.load) document.fonts.load('800 100px Syne').finally(()=>{ if(W) drawText(), dirty=true, kick(); });
+  resize();
+  window.__ripple={kick};
+})();
+</script>
+</body>
+</html>

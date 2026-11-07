@@ -1,0 +1,442 @@
+/* ==========================================================================
+   Console Section & Footer CSS - Cloud AI Website
+   Interactive fanned card stack, dark transparent glass panels, and luxury footer
+   ========================================================================== */
+
+/* ---------- Console Section Container (transparent: texture shows through) ---------- */
+.console-section {
+  position: relative;
+  padding: clamp(28px, 3vw, 44px) 32px 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  z-index: 5;
+}
+
+.console-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+/* ---------- Orbit Card Stack Root & Stage ---------- */
+.ocs-root {
+  position: relative;
+  z-index: 5;
+  container-type: inline-size;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0 40px;
+}
+
+.ocs-stage {
+  --card-w: min(290px, 25cqw);
+  --spread-x: 12px;
+  --spread-r: 2.8deg;
+  --arc: 0px;
+  position: relative;
+  width: 100%;
+  height: calc(var(--card-w) * 1.44 + 80px);
+  font-size: calc(var(--card-w) * 0.05);
+  perspective: 1200px;
+}
+
+.ocs-stage[data-open="true"] {
+  --spread-x: calc(var(--card-w) * 0.64);
+  --spread-r: 6.5deg;
+  --arc: 0.75em;
+}
+
+@container (max-width: 640px) {
+  .ocs-stage {
+    --card-w: min(280px, 44cqw);
+  }
+  .ocs-stage[data-open="true"] {
+    --spread-x: calc(var(--card-w) * 0.32);
+    --spread-r: 5.5deg;
+  }
+}
+
+/* ---------- Dark Transparent Glass Card Panel (Steps 4 & 6) ---------- */
+.ocs-card {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: var(--card-w);
+  height: calc(var(--card-w) * 1.44);
+  display: flex;
+  flex-direction: column;
+  padding: 0.85em;
+  border-radius: 1.6em;
+  color: #ffffff;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .11) 0%, rgba(255, 255, 255, .04) 100%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, .20);
+  box-shadow:
+    0 1.4em 3.2em -1em rgba(0, 0, 0, .75),
+    0 0 0 1px rgba(255, 255, 255, .06),
+    inset 0 1px 0 rgba(255, 255, 255, .32),
+    0 0 24px -8px var(--accent);
+  transform-origin: 50% 90%;
+  transform:
+    translate(calc(var(--d) * var(--spread-x)), calc(var(--abs) * var(--abs) * var(--arc) + var(--lift, 0px)))
+    rotate(calc(var(--d) * var(--spread-r)));
+  transition:
+    transform .55s cubic-bezier(.22, 1, .36, 1),
+    box-shadow .4s ease,
+    border-color .4s ease,
+    background .4s ease;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+/* Spotlight inside the console card */
+.ocs-spotlight {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(280px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.16), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.ocs-card:hover .ocs-spotlight,
+.ocs-card:active .ocs-spotlight {
+  opacity: 1;
+}
+
+/* Hover / active: clean 6px lift + brighter border in the theme colour */
+.ocs-card:hover {
+  --lift: -6px;
+  border-color: var(--accent);
+}
+
+/* Active card lifts up in the fanned deck */
+.ocs-stage[data-open="true"] .ocs-card[data-active="true"] {
+  --lift: -2.2em;
+  box-shadow:
+    0 2em 4em -1em rgba(0, 0, 0, .85),
+    0 0 32px -4px var(--accent),
+    inset 0 1px 0 rgba(255, 255, 255, .5);
+  border-color: rgba(255, 255, 255, .36);
+  background: linear-gradient(145deg, rgba(255, 255, 255, .15) 0%, rgba(255, 255, 255, .06) 100%);
+}
+
+.ocs-card:focus-visible {
+  box-shadow:
+    0 0 0 3px #0b0b0f,
+    0 0 0 5px var(--accent-soft),
+    0 0 28px var(--accent);
+}
+
+/* ---------- Card Media Container ---------- */
+.ocs-media {
+  position: relative;
+  flex: 0 0 46%;
+  border-radius: 1.15em;
+  background: rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 2;
+}
+
+.ocs-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+  pointer-events: none;
+  transition: transform .45s cubic-bezier(.16, 1, .3, 1);
+}
+
+.ocs-card:hover .ocs-media img {
+  transform: scale(1.05);
+}
+
+.ocs-placeholder {
+  font-size: 3.6em;
+  font-weight: 700;
+  letter-spacing: -.04em;
+  color: var(--accent-soft);
+}
+
+/* ---------- Arrow Button & Badge ---------- */
+.ocs-arrow {
+  position: absolute;
+  top: .6em;
+  right: .6em;
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(10, 8, 14, .62);
+  color: #ffffff;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, .3);
+  text-decoration: none;
+  pointer-events: none;
+  transition: background .3s ease, border-color .3s ease, transform .3s ease, color .3s ease;
+  z-index: 3;
+}
+
+.ocs-stage[data-open="true"] a.ocs-arrow {
+  pointer-events: auto;
+}
+
+.ocs-stage[data-open="true"] a.ocs-arrow:hover {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, .6);
+  transform: scale(1.1);
+  box-shadow: 0 0 16px var(--accent);
+}
+
+.ocs-badge {
+  position: absolute;
+  right: .6em;
+  bottom: .6em;
+  padding: .3em .75em;
+  border-radius: 999px;
+  background: rgba(10, 8, 14, .62);
+  color: var(--accent-soft);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, .25);
+  font-size: .72em;
+  font-weight: 700;
+  letter-spacing: .08em;
+  z-index: 3;
+}
+
+/* ---------- Card Body Info ---------- */
+.ocs-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1em .5em .3em;
+  min-height: 0;
+  z-index: 2;
+}
+
+.ocs-role, .ocs-tag {
+  margin: 0;
+  font-size: .72em;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  transition: color 1s ease;
+}
+
+.ocs-name {
+  margin: .35em 0 .45em;
+  font-size: 1.85em;
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  color: #ffffff;
+  font-family: var(--font-main);
+}
+
+.ocs-desc {
+  margin: 0;
+  font-size: .92em;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, .78);
+}
+
+.ocs-tag {
+  margin-top: auto;
+  padding-top: .8em;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+}
+
+/* ---------- Luxury Site Footer (fully transparent, no border, no divider) ---------- */
+.site-footer {
+  position: relative;
+  padding: clamp(48px, 5vw, 80px) 32px 48px;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  z-index: 5;
+}
+
+.footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.footer-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.footer-brand .footer-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: radial-gradient(circle at 35% 30%, var(--accent-soft), rgba(255, 255, 255, 0.08) 70%);
+  display: block;
+  box-shadow: 0 0 16px var(--accent);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.footer-brand:hover .footer-logo {
+  transform: scale(1.08);
+  box-shadow: 0 0 24px var(--accent);
+}
+
+.footer-brand span {
+  font-family: var(--font-main);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* Footer Navigation with Magnetic Underline Sweep (Step 6) */
+.footer-nav {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.footer-nav a,
+.nav-wrap nav a {
+  position: relative;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  padding-bottom: 4px;
+  transition: color .25s ease;
+}
+
+.footer-nav a::after,
+.nav-wrap nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 10px var(--accent-soft);
+}
+
+.footer-nav a:hover,
+.nav-wrap nav a:hover {
+  color: #ffffff;
+}
+
+.footer-nav a:hover::after,
+.nav-wrap nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .3s ease, border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.back-to-top:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px var(--accent);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  width: 100%;
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .ocs-card {
+    transition: none !important;
+  }
+  .ocs-spotlight {
+    display: none !important;
+  }
+  .footer-nav a::after,
+  .nav-wrap nav a::after {
+    display: none !important;
+  }
+}

@@ -1,0 +1,37 @@
+# ===========================================================================
+# AUDIO FIRE - site wide Apache settings (XAMPP)
+# If you move the site to the document root, change the ErrorDocument path
+# below to "/404.php".
+# ===========================================================================
+
+# no directory listing (never expose the uploads/ file list)
+Options -Indexes
+
+# custom 404 page (404.php sends a real HTTP 404 status)
+# NOTE: spaces in the folder name MUST be written as %20 here, otherwise
+# Apache treats the line as a bad directive and every page returns 500.
+ErrorDocument 404 /Final%20Audio%20Fire%20Website/Opencode/404.php
+
+# ---- security headers for EVERY response (including static files) --------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# ---- never serve the internal folders or the schema / log files -----------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # includes/ = PHP core, _inputs/ _partials/ = design sources, data/ = logs
+  RewriteRule ^(includes|_inputs|_partials|data)(/|$) - [F,L]
+</IfModule>
+
+<FilesMatch "\.(sql|log|md)$">
+    Require all denied
+</FilesMatch>
+
+# never serve the .env file with the database credentials
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>

@@ -1,0 +1,12 @@
+# ===========================================================================
+# PHP settings for the admin panel (mod_php - .user.ini is for CGI only)
+# Values mirror admin/.user.ini; raise them here if uploads are rejected.
+# ===========================================================================
+<IfModule mod_php.c>
+  php_value upload_max_filesize   64M
+  php_value post_max_size         72M
+  php_value max_execution_time    300
+  php_value memory_limit          512M
+  php_flag display_errors         Off
+  php_flag log_errors             On
+</IfModule>

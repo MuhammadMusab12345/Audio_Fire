@@ -1,0 +1,5 @@
+[2026-11-05 09:35:20] ErrorException: deliberate warning in C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\_t.php:108
+Stack trace:
+#0 [internal function]: {closure}(512, 'deliberate warn...', 'C:\\xampp\\htdocs...', 108)
+#1 C:\xampp\htdocs\Final Audio Fire Website\Opencode\admin\_t.php(108): trigger_error('deliberate warn...', 512)
+#2 {main}

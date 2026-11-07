@@ -1,0 +1,90 @@
+/* ==========================================================================
+   REVIEWS PAGE (reviews.php)
+   Extracted verbatim from the original self contained "Final reviews.html".
+   Everything is scoped under .rv-page (plus the page-only <body> background)
+   so it can never touch the shared navbar / footer on this page.
+   The :root bridge maps --accent onto the cycling palette so the shared
+   glass navbar follows the page colours (same idea as the music page).
+   ========================================================================== */
+
+:root{--line:rgba(255,255,255,.16);--text:#f5f1ff;--muted:#b3a8d6;--ease:cubic-bezier(.22,1.2,.36,1)}
+@property --s1{syntax:'<color>';inherits:true;initial-value:#8b5cf6}
+@property --s2{syntax:'<color>';inherits:true;initial-value:#ec4899}
+@property --s3{syntax:'<color>';inherits:true;initial-value:#06b6d4}
+:root{transition:--s1 5s,--s2 5s,--s3 5s;--accent:var(--s1)}
+
+/* page background (this file loads only on reviews.php) */
+body{background:radial-gradient(ellipse at 25% 35%,#2a1250,#0c0716 70%) fixed}
+
+/* page shell: same 24px rhythm as the original body padding, with the
+   fixed shared navbar cleared on top */
+.rv-page{position:relative;min-height:100vh;padding:calc(var(--nav-h,72px) + 24px) 24px 40px;overflow-x:hidden;font-family:Inter,sans-serif;color:var(--text)}
+
+.rv-page .smoke{position:fixed;inset:-10vmax;z-index:0;pointer-events:none;filter:url(#wisp)}
+.rv-page .smoke b{position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(70px);mix-blend-mode:screen;opacity:.5;animation:drift 22s ease-in-out infinite alternate}
+.rv-page .smoke b:nth-child(1){left:-5%;top:0;background:radial-gradient(circle,var(--s1),transparent 65%)}
+.rv-page .smoke b:nth-child(2){right:-10%;top:10%;background:radial-gradient(circle,var(--s2),transparent 65%);animation-duration:28s;animation-delay:-8s}
+.rv-page .smoke b:nth-child(3){left:25%;bottom:-25%;background:radial-gradient(circle,var(--s3),transparent 65%);animation-duration:25s;animation-delay:-14s}
+.rv-page .smoke b:nth-child(4){left:50%;top:-20%;width:45vmax;height:45vmax;background:radial-gradient(circle,var(--s2),transparent 65%);animation-duration:32s;animation-delay:-3s;opacity:.35}
+@keyframes drift{0%{transform:translate(0,0) scale(1) rotate(0)}50%{transform:translate(9vmax,-6vmax) scale(1.2) rotate(40deg)}100%{transform:translate(-7vmax,8vmax) scale(.9) rotate(-30deg)}}
+.rv-page .notes{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.rv-page .notes span{position:absolute;bottom:-30px;color:rgba(255,255,255,.3);animation:up linear infinite}
+@keyframes up{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+.rv-page .shell{position:relative;z-index:1;width:min(1100px,100%);margin:0 auto;border:1px solid var(--line);border-radius:26px;background:rgba(255,255,255,.06);backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);padding:70px 44px 44px;box-shadow:0 40px 100px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.25),inset 0 -20px 40px rgba(0,0,0,.25)}
+.rv-page .brand{position:absolute;top:26px;left:30px;font-weight:700;font-size:.95rem}
+.rv-page .eq{display:inline-flex;gap:3px;align-items:flex-end;height:14px;margin-left:10px;vertical-align:middle}
+.rv-page .eq i{width:3px;background:var(--s1);border-radius:2px;animation:eq 1s ease-in-out infinite}
+.rv-page .eq i:nth-child(2){animation-delay:-.3s}.rv-page .eq i:nth-child(3){animation-delay:-.6s}.rv-page .eq i:nth-child(4){animation-delay:-.15s}
+@keyframes eq{0%,100%{height:3px}50%{height:14px}}
+.rv-page h1{font-family:'Playfair Display',serif;font-weight:900;text-transform:uppercase;letter-spacing:1px;line-height:1.02;font-size:clamp(2.2rem,6vw,3.4rem);text-align:center;text-shadow:0 4px 0 rgba(0,0,0,.35)}
+.rv-page h1 span{display:block}.rv-page h1 .o{color:transparent;-webkit-text-stroke:1.6px #fff;text-shadow:none}
+.rv-page .sub{text-align:center;color:var(--muted);font-size:.9rem;margin:12px 0 22px}
+.rv-page .summary{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.rv-page .pill{padding:10px 22px;border-radius:40px;border:1px solid var(--line);background:rgba(0,0,0,.28);box-shadow:inset 0 3px 8px rgba(0,0,0,.5),0 1px 0 rgba(255,255,255,.14);font-size:.85rem;color:var(--muted)}
+.rv-page .pill b{color:#ffc928;font-size:1.1rem;margin-right:4px}
+.rv-page .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:46px 30px;margin-top:54px}
+.rv-page .card{position:relative;opacity:0;transform:translateY(40px) scale(.96);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv-page .card.show{opacity:1;transform:none}
+.rv-page .tab{position:relative;width:76%;padding:14px 20px 16px;border-radius:22px 22px 0 0;background:linear-gradient(180deg,color-mix(in srgb,var(--s1) 85%,#fff),color-mix(in srgb,var(--s1) 60%,#000));box-shadow:0 -4px 14px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.4);transition:background 1s}
+.rv-page .tab strong{display:block;font-size:.98rem;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.rv-page .tab small{opacity:.85;font-size:.8rem}
+.rv-page .avatar{position:absolute;right:6px;top:-26px;width:84px;height:84px;border-radius:50%;object-fit:cover;background:#222;border:4px solid #fff;box-shadow:0 10px 24px rgba(0,0,0,.5);transition:transform .6s var(--ease);z-index:2}
+.rv-page .card:hover .avatar{transform:scale(1.1) rotate(-6deg)}
+.rv-page .body{border:1px solid var(--line);border-radius:0 24px 24px 24px;background:rgba(255,255,255,.07);padding:20px;min-height:176px;box-shadow:0 14px 30px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.2);transition:transform .3s,box-shadow .3s}
+.rv-page .card:hover .body{transform:translateY(-6px);box-shadow:0 22px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.25)}
+.rv-page .stars{color:#ffc928;letter-spacing:3px;font-size:1.15rem;text-shadow:0 2px 6px rgba(255,201,40,.35)}
+.rv-page .stars .off{color:rgba(255,255,255,.25);text-shadow:none}
+.rv-page .txt{border-left:3px solid var(--s1);padding-left:12px;margin-top:12px;line-height:1.55;font-size:.9rem;color:#e8e1ff;transition:border-color 1s}
+.rv-page .tip{margin-top:14px;font-size:.78rem;color:var(--muted);padding:8px 12px;border-radius:11px;background:rgba(0,0,0,.28);box-shadow:inset 0 2px 6px rgba(0,0,0,.45)}
+.rv-page .tip b{color:#fff}
+.rv-page .formbox{margin:64px auto 0;max-width:680px;border:1px solid var(--line);border-radius:22px;background:rgba(0,0,0,.2);padding:34px 34px 30px;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+.rv-page .formbox h2{font-family:'Playfair Display',serif;font-weight:900;text-transform:uppercase;text-align:center;font-size:1.7rem;margin-bottom:4px}
+.rv-page form{display:grid;gap:14px;margin-top:20px}.rv-page .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rv-page label{display:block;font-size:.76rem;font-weight:600;margin-bottom:6px}
+.rv-page input,.rv-page textarea{width:100%;padding:12px 14px;border-radius:11px;font:inherit;font-size:.88rem;color:var(--text);outline:none;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.12);border-top-color:rgba(0,0,0,.5);box-shadow:inset 0 3px 8px rgba(0,0,0,.5),0 1px 0 rgba(255,255,255,.14);transition:.25s}
+.rv-page textarea{min-height:84px;resize:vertical}
+.rv-page input::placeholder,.rv-page textarea::placeholder{color:#8a7fb0}
+/* Hover: the field tips forward out of the panel - accent catches the rim and
+   it lifts a hair. Sits before the focus rule so focus still wins while typing. */
+.rv-page input:hover,.rv-page textarea:hover{border-color:color-mix(in srgb,var(--s1) 55%,rgba(255,255,255,.12));box-shadow:inset 0 3px 8px rgba(0,0,0,.5),0 1px 0 rgba(255,255,255,.18),0 8px 20px rgba(0,0,0,.4);transform:translateY(-1px)}
+.rv-page input:focus,.rv-page textarea:focus{border-color:var(--s1);box-shadow:inset 0 3px 8px rgba(0,0,0,.5),0 0 0 3px color-mix(in srgb,var(--s1) 35%,transparent);transform:translateY(-1px)}
+.rv-page .pick{display:flex;gap:6px;font-size:2rem;color:rgba(255,255,255,.22);cursor:pointer;user-select:none;line-height:1}
+.rv-page .pick span{transition:transform .25s var(--ease),color .2s}
+.rv-page .pick span:hover{transform:scale(1.3) rotate(-12deg)}.rv-page .pick span.on{color:#ffc928;text-shadow:0 2px 10px rgba(255,201,40,.5)}
+.rv-page .photo{display:flex;align-items:center;gap:14px}
+.rv-page .photo img{width:58px;height:58px;border-radius:50%;object-fit:cover;border:3px solid #fff;background:#222;box-shadow:0 6px 16px rgba(0,0,0,.5)}
+.rv-page .btn{padding:13px 18px;border-radius:13px;border:0;color:#fff;font:inherit;font-weight:600;font-size:.88rem;cursor:pointer;text-shadow:0 1px 2px rgba(0,0,0,.4);background:linear-gradient(180deg,color-mix(in srgb,var(--s1) 85%,#fff),color-mix(in srgb,var(--s1) 70%,#000));box-shadow:0 6px 0 color-mix(in srgb,var(--s1) 40%,#000),0 14px 24px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.45);transition:transform .15s,box-shadow .15s,background 1s}
+.rv-page .btn:hover{transform:translateY(-2px)}.rv-page .btn:active{transform:translateY(5px);box-shadow:0 1px 0 color-mix(in srgb,var(--s1) 40%,#000),0 4px 10px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.3)}
+.rv-page .btn.ghost{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04));box-shadow:0 5px 0 rgba(0,0,0,.4),0 12px 22px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.3)}
+.rv-page .chips{display:flex;flex-wrap:wrap;gap:8px}
+.rv-page .chip{padding:8px 15px;border-radius:30px;font-size:.78rem;cursor:pointer;border:1px solid var(--line);background:rgba(255,255,255,.06);box-shadow:0 3px 0 rgba(0,0,0,.35);transition:.2s}
+.rv-page .chip:hover{transform:translateY(-2px)}
+.rv-page .chip.on{background:linear-gradient(180deg,color-mix(in srgb,var(--s1) 85%,#fff),color-mix(in srgb,var(--s1) 70%,#000));border-color:transparent}
+.rv-page .msg{text-align:center;font-size:.82rem;min-height:18px;color:#ffb4b4}.rv-page .msg.ok{color:#9ff0b8}
+@media(max-width:700px){
+  .rv-page{padding:calc(var(--nav-h,72px) + 14px) 14px 24px}
+  .rv-page .shell{padding:64px 18px 26px}
+  .rv-page .formbox{padding:24px 18px}
+  .rv-page .row{grid-template-columns:1fr}
+  .rv-page .grid{margin-top:46px}
+}

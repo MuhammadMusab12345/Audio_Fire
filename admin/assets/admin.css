@@ -1,0 +1,1415 @@
+/* ==========================================================================
+   AUDIO FIRE - ADMIN PANEL STYLESHEET (admin/assets/admin.css)
+   --------------------------------------------------------------------------
+   Design language: frosted glass on a soft sage backdrop, Manrope + Sora,
+   12-column page grid (.g12), everything sitting on the animated smoke layer.
+
+   Sections
+     1  tokens + reset
+     2  smoke background
+     3  shell (app / side / main / content)
+     4  sidebar
+     5  top bar
+     6  page head
+     7  grid
+     8  cards + chips + stats
+     9  controls (buttons, segments, filters)
+    10  tables
+    11  data widgets (bars, gauges, donut, chart, distribution)
+    12  forms (the 3D field emboss)
+    13  modal / sheet
+    14  notifications, toast, flash
+    15  login
+    16  utilities
+    17  responsive
+   ========================================================================== */
+
+/* ------------------------------------------------- 1. tokens + reset ------ */
+/* Registered smoke colours: because --sm-hue-a/b/c are typed <color> the 12s
+   cycle below can interpolate them instead of snapping between keyframes. */
+@property --sm-hue-a{syntax:"<color>";inherits:true;initial-value:rgba(63,197,136,.34)}
+@property --sm-hue-b{syntax:"<color>";inherits:true;initial-value:rgba(122,142,132,.24)}
+@property --sm-hue-c{syntax:"<color>";inherits:true;initial-value:rgba(19,33,26,.14)}
+
+:root{
+  --bg:#e8efe9;
+  --ink:#0e1b15;
+  --mut:#5d6f66;
+  --line:rgba(14,27,21,.10);
+
+  --g1:#1f7a4d;
+  --g2:#2f9e6a;
+  --sage:#7fc29b;
+  --sand:#c9a66b;
+
+  --glass:rgba(255,255,255,.72);
+  --glass2:rgba(255,255,255,.46);
+  --bd:rgba(255,255,255,.78);
+  --sh:0 18px 44px rgba(14,44,32,.12);
+  --tint:rgba(31,122,77,.12);
+  --track:rgba(14,27,21,.10);
+  --zebra:rgba(14,27,21,.035);
+
+  --pb1:#1f7a4d;
+  --pb2:#3fc588;
+
+  --inset-s:inset 0 1px 2px rgba(19,33,26,.10), inset 0 0 0 1px rgba(255,255,255,.6);
+  --raise-s:0 1px 0 rgba(255,255,255,.7);
+  --emb-in:inset 0 2px 4px rgba(19,33,26,.10);
+  --emb-hi:inset 0 -1px 0 rgba(255,255,255,.65);
+
+  /* Type: Manrope for UI, Sora for headings and big numbers, Inter for forms */
+  --font-ui:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-hd:'Sora','Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-form:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+
+  /* Spacing scale - the only source of vertical rhythm in the panel */
+  --s1:4px;--s2:8px;--s3:14px;--s4:20px;--s5:24px;--s6:32px;
+
+  /* Field geometry shared by every input, select and textarea */
+  --field-h:46px;--field-r:12px;--field-px:14px;
+
+  /* 3D buttons: --btn-face is the gradient top, --btn-edge the solid darker
+     lip under it, --btn-hi the inset highlight, --btn-sh the drop shadow.
+     Variants only re-point --btn-face / --btn-edge, so one rule set serves
+     both themes. */
+  --btn-face:linear-gradient(180deg,#ffffff 0%,#edf3ef 100%);
+  --btn-edge:rgba(14,27,21,.18);
+  --btn-hi:rgba(255,255,255,.88);
+  --btn-sh:rgba(14,44,32,.20);
+  --btn-face-pri:linear-gradient(180deg,#45c98f 0%,#1f7a4d 100%);
+  --btn-edge-pri:#14603b;
+  --btn-face-red:linear-gradient(180deg,rgba(224,87,74,.22) 0%,rgba(224,87,74,.10) 100%);
+  --btn-edge-red:rgba(168,56,45,.45);
+  --btn-face-ghost:linear-gradient(180deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.18) 100%);
+  --btn-edge-ghost:rgba(14,27,21,.10);
+  --btn-ink:#0e1b15;
+  --btn-ink-2:#a8382d;
+
+  /* Toasts follow the theme instead of fighting it */
+  --toast-bg:#123025;--toast-ink:#eafaf2;
+  --toast-err-bg:#8f2f26;--toast-err-ink:#ffe9e6;
+
+  /* Smoke resting colours: green, gray, black - pulled right down in light
+     mode so the drift reads as daylight haze, not dirt on a white page. */
+  --sm-hue-a:rgba(63,197,136,.34);
+  --sm-hue-b:rgba(122,142,132,.24);
+  --sm-hue-c:rgba(19,33,26,.14);
+  --smoke-noise:.035;
+}
+[data-theme=dark]{
+  --bg:#08120d;
+  --ink:#e7f3ec;
+  --mut:#8fa79b;
+  --line:rgba(255,255,255,.10);
+
+  --g1:#3fc588;
+  --g2:#2f9e6a;
+  --sage:#7fc29b;
+  --sand:#c9a66b;
+
+  --glass:rgba(16,32,25,.74);
+  --glass2:rgba(16,32,25,.48);
+  --bd:rgba(255,255,255,.09);
+  --sh:0 18px 44px rgba(0,0,0,.45);
+  --tint:rgba(63,197,136,.16);
+  --track:rgba(255,255,255,.10);
+  --zebra:rgba(255,255,255,.035);
+
+  --pb1:#3fc588;
+  --pb2:#1f7a4d;
+
+  --inset-s:inset 0 1px 2px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.05);
+  --raise-s:0 1px 0 rgba(255,255,255,.05);
+  --emb-in:inset 0 2px 4px rgba(0,0,0,.40);
+  --emb-hi:inset 0 -1px 0 rgba(255,255,255,.05);
+
+  --btn-face:linear-gradient(180deg,#22382e 0%,#152620 100%);
+  --btn-edge:rgba(0,0,0,.60);
+  --btn-hi:rgba(255,255,255,.10);
+  --btn-sh:rgba(0,0,0,.50);
+  --btn-face-pri:linear-gradient(180deg,#4bd39a 0%,#1f7a4d 100%);
+  --btn-edge-pri:#0e4a2f;
+  --btn-face-red:linear-gradient(180deg,rgba(224,87,74,.28) 0%,rgba(224,87,74,.12) 100%);
+  --btn-edge-red:rgba(224,87,74,.55);
+  --btn-face-ghost:linear-gradient(180deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.02) 100%);
+  --btn-edge-ghost:rgba(0,0,0,.45);
+  --btn-ink:#e7f3ec;
+  --btn-ink-2:#f09a90;
+
+  --toast-bg:#e9f4ee;--toast-ink:#0e1b15;
+  --toast-err-bg:#ffb3a8;--toast-err-ink:#5c140c;
+
+  --sm-hue-a:rgba(63,197,136,.26);
+  --sm-hue-b:rgba(150,165,158,.14);
+  --sm-hue-c:rgba(0,0,0,.55);
+  --smoke-noise:.05;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-ui);
+  background:var(--bg);color:var(--ink);min-height:100vh;padding:18px;
+  transition:background .4s,color .4s;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+/* Sora carries every heading and every big number, nothing else does */
+.head h1,.card>h3,.card-h h2,.stat .n,.donut b,.gauge .v{font-family:var(--font-hd)}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:inherit}
+svg{flex:none}
+::selection{background:var(--tint);color:var(--ink)}
+
+/* ------------------------------------------- 2. smoke background ---------- */
+/* Three large soft blobs - green, gray, black and nothing else - drifting
+   very slowly behind the whole panel. The markup is a single fixed .smoke
+   layer emitted at the top of <body> by includes/header.php and login.php.
+
+   Each blob is a radial-gradient rather than a blurred box: the gradient is
+   painted once and only `transform` is animated, so the compositor moves the
+   layer on the GPU while the CPU stays idle. translate3d + will-change keep
+   it promoted. The three loops run at different lengths and the middle one
+   alternates direction, so they never fall into a rhythm you can predict.
+
+   On top of the drift, the registered --sm-hue-a/b/c colours run one 12s
+   cycle: green -> teal -> gray -> deep black-green -> amber hint -> green.
+   The three blobs start at different steps of that cycle, so they never
+   turn the same colour at the same moment, and because the properties are
+   typed <color> the change is a slow cross-fade rather than a jump. */
+.smoke{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  animation:sm-cyc-a 12s linear infinite,sm-cyc-b 12s linear infinite,sm-cyc-c 12s linear infinite;
+}
+[data-theme=dark] .smoke{animation-name:sm-cyc-a-d,sm-cyc-b-d,sm-cyc-c-d}
+.smoke i{
+  position:absolute;display:block;border-radius:50%;
+  will-change:transform;transform:translate3d(0,0,0);
+}
+/* green - top left, the anchor colour */
+.smoke .s-green{
+  width:76vmax;height:76vmax;left:-20vmax;top:-18vmax;
+  background:radial-gradient(circle,var(--sm-hue-a) 0%,transparent 66%);
+  animation:sm-a 32s ease-in-out infinite alternate;
+}
+/* gray - right, the neutraliser */
+.smoke .s-gray{
+  width:64vmax;height:64vmax;right:-16vmax;top:14vmax;
+  background:radial-gradient(circle,var(--sm-hue-b) 0%,transparent 64%);
+  animation:sm-b 38s ease-in-out infinite alternate-reverse;
+}
+/* black - bottom, the depth */
+.smoke .s-black{
+  width:70vmax;height:70vmax;left:12vmax;bottom:-26vmax;
+  background:radial-gradient(circle,var(--sm-hue-c) 0%,transparent 68%);
+  animation:sm-c 36s ease-in-out infinite alternate;
+}
+/* A faint grain over the top so the soft gradients do not band on big screens */
+.smoke .s-noise{
+  position:absolute;inset:0;border-radius:0;will-change:auto;transform:none;
+  opacity:var(--smoke-noise);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@keyframes sm-a{
+  0%  {transform:translate3d(0,0,0) scale(1) rotate(0deg)}
+  50% {transform:translate3d(9vw,7vh,0) scale(1.16) rotate(14deg)}
+  100%{transform:translate3d(-4vw,12vh,0) scale(.94) rotate(-10deg)}
+}
+@keyframes sm-b{
+  0%  {transform:translate3d(0,0,0) scale(1) rotate(0deg)}
+  50% {transform:translate3d(-11vw,9vh,0) scale(1.2) rotate(-16deg)}
+  100%{transform:translate3d(5vw,-6vh,0) scale(.9) rotate(12deg)}
+}
+@keyframes sm-c{
+  0%  {transform:translate3d(0,0,0) scale(1) rotate(0deg)}
+  50% {transform:translate3d(8vw,-9vh,0) scale(1.14) rotate(12deg)}
+  100%{transform:translate3d(-7vw,4vh,0) scale(1.04) rotate(-13deg)}
+}
+/* The 12s colour cycle, light mode: green .34 / gray .24 / black .14 so the
+   haze stays visible on the pale backdrop without touching text contrast.
+   Blob b starts on gray and blob c on black-green, so the trio keeps its
+   identities while every one of them walks the same palette. */
+@keyframes sm-cyc-a{
+  0%,100%{--sm-hue-a:rgba(63,197,136,.34)}
+  20%    {--sm-hue-a:rgba(45,180,178,.32)}
+  40%    {--sm-hue-a:rgba(122,142,132,.24)}
+  60%    {--sm-hue-a:rgba(9,34,23,.14)}
+  80%    {--sm-hue-a:rgba(201,166,107,.20)}
+}
+@keyframes sm-cyc-b{
+  0%,100%{--sm-hue-b:rgba(122,142,132,.24)}
+  20%    {--sm-hue-b:rgba(9,34,23,.14)}
+  40%    {--sm-hue-b:rgba(201,166,107,.20)}
+  60%    {--sm-hue-b:rgba(63,197,136,.34)}
+  80%    {--sm-hue-b:rgba(45,180,178,.32)}
+}
+@keyframes sm-cyc-c{
+  0%,100%{--sm-hue-c:rgba(9,34,23,.14)}
+  20%    {--sm-hue-c:rgba(201,166,107,.20)}
+  40%    {--sm-hue-c:rgba(63,197,136,.34)}
+  60%    {--sm-hue-c:rgba(45,180,178,.32)}
+  80%    {--sm-hue-c:rgba(122,142,132,.24)}
+}
+/* Same cycle on the dark backdrop, with the darker alphas the theme needs */
+@keyframes sm-cyc-a-d{
+  0%,100%{--sm-hue-a:rgba(63,197,136,.26)}
+  20%    {--sm-hue-a:rgba(45,180,178,.24)}
+  40%    {--sm-hue-a:rgba(150,165,158,.14)}
+  60%    {--sm-hue-a:rgba(0,0,0,.55)}
+  80%    {--sm-hue-a:rgba(201,166,107,.14)}
+}
+@keyframes sm-cyc-b-d{
+  0%,100%{--sm-hue-b:rgba(150,165,158,.14)}
+  20%    {--sm-hue-b:rgba(0,0,0,.55)}
+  40%    {--sm-hue-b:rgba(201,166,107,.14)}
+  60%    {--sm-hue-b:rgba(63,197,136,.26)}
+  80%    {--sm-hue-b:rgba(45,180,178,.24)}
+}
+@keyframes sm-cyc-c-d{
+  0%,100%{--sm-hue-c:rgba(0,0,0,.55)}
+  20%    {--sm-hue-c:rgba(201,166,107,.14)}
+  40%    {--sm-hue-c:rgba(63,197,136,.26)}
+  60%    {--sm-hue-c:rgba(45,180,178,.24)}
+  80%    {--sm-hue-c:rgba(150,165,158,.14)}
+}
+/* Motion is decorative - park it entirely for anyone who asks for less. The
+   blobs then fall back to the resting colours declared in the tokens. */
+@media (prefers-reduced-motion:reduce){
+  .smoke,.smoke i{animation:none !important}
+}
+
+/* ----------------------------------------------- 3. shell ----------------- */
+.app{
+  display:grid;grid-template-columns:250px minmax(0,1fr);
+  gap:18px;align-items:start;max-width:1560px;margin:0 auto;
+  position:relative;z-index:1;
+}
+.main{min-width:0;display:flex;flex-direction:column;gap:18px}
+.content{display:grid;gap:18px;align-content:start}
+.panel-foot{
+  text-align:center;font-size:12px;color:var(--mut);
+  padding:22px 0 6px;
+}
+
+.glass,.side,.top,.card,.stat,.promo{
+  background:var(--glass);
+  border:1px solid var(--bd);
+  backdrop-filter:blur(22px) saturate(1.5);
+  -webkit-backdrop-filter:blur(22px) saturate(1.5);
+  box-shadow:var(--sh);
+}
+.side{
+  border-radius:26px;padding:22px 14px;
+  position:sticky;top:18px;height:calc(100vh - 36px);z-index:40;
+  display:flex;flex-direction:column;min-height:0;
+}
+
+/* ----------------------------------------------- 4. sidebar --------------- */
+/* The sidebar shows the full Audio Fire lockup straight on the glass. The PNG
+   already carries the wordmark, so there is no tile behind it and no second
+   line of text under it. max-width keeps the mark sharp and stops it crowding
+   the nav; the mobile rule shortens it when the sidebar collapses. */
+.logo{display:block;padding:6px 4px 14px;overflow:hidden}
+.logo img{display:block;width:100%;max-width:190px;max-height:64px;height:auto;object-fit:contain}
+
+.scroll{
+  overflow:auto;flex:1;min-height:0;margin:0 -6px;padding:0 6px;
+  scrollbar-width:thin;scrollbar-color:var(--track) transparent;
+}
+.scroll::-webkit-scrollbar,.sheet::-webkit-scrollbar,.nav::-webkit-scrollbar,.tbl-wrap::-webkit-scrollbar{width:8px;height:8px}
+.scroll::-webkit-scrollbar-thumb,.sheet::-webkit-scrollbar-thumb,.nav::-webkit-scrollbar-thumb,.tbl-wrap::-webkit-scrollbar-thumb{background:var(--track);border-radius:99px}
+.scroll::-webkit-scrollbar-track,.sheet::-webkit-scrollbar-track,.nav::-webkit-scrollbar-track,.tbl-wrap::-webkit-scrollbar-track{background:transparent}
+
+.lbl{
+  font-size:10.5px;letter-spacing:.15em;color:var(--mut);
+  margin:16px 10px 7px;font-weight:700;text-transform:uppercase;
+}
+.lbl:first-child{margin-top:0}
+.lbl-in{
+  font-size:10.5px;letter-spacing:.14em;color:var(--mut);
+  font-weight:700;text-transform:uppercase;margin-bottom:9px;
+}
+.nav{display:grid;gap:3px;scrollbar-width:thin;scrollbar-color:var(--track) transparent}
+.nav a,.navlink{
+  display:flex;align-items:center;gap:11px;
+  padding:10px 12px;border-radius:13px;
+  font-size:13.5px;font-weight:600;color:var(--mut);
+  transition:background .18s,color .18s;
+}
+.nav a svg,.navlink svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.nav a:hover,.navlink:hover{background:var(--tint);color:var(--ink)}
+.nav a.on,.navlink.on{
+  background:linear-gradient(135deg,var(--pb1),var(--pb2));
+  color:#fff;box-shadow:0 8px 18px rgba(14,59,39,.25);
+}
+.nav a.on svg,.navlink.on svg{stroke:#fff}
+.pill{
+  margin-left:auto;font-size:10.5px;font-weight:800;
+  background:var(--tint);color:var(--g1);
+  padding:2px 7px;border-radius:99px;
+}
+.nav a.on .pill{background:rgba(255,255,255,.24);color:#fff}
+
+.promo{
+  position:relative;overflow:hidden;border-radius:20px;
+  margin-top:16px;padding:16px;color:#fff;
+  background:linear-gradient(150deg,var(--pb1),var(--pb2));
+  border:0;box-shadow:0 12px 26px rgba(14,59,39,.24);
+}
+.promo:after{
+  content:"";position:absolute;right:-34px;top:-34px;
+  width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.12);
+}
+.promo b{font-size:13.5px}
+.promo p{font-size:11.5px;opacity:.82;margin:5px 0 12px;line-height:1.45}
+.side-foot{display:grid;gap:8px;margin-top:14px}
+
+/* ----------------------------------------------- 5. top bar --------------- */
+.top{
+  border-radius:22px;padding:12px 14px;
+  display:flex;align-items:center;gap:12px;
+  position:sticky;top:0;z-index:45;flex-wrap:wrap;
+  background:color-mix(in srgb, var(--bg) 85%, transparent);
+}
+.top .search{flex:1;min-width:170px;max-width:340px}
+.search{
+  display:flex;align-items:center;gap:9px;
+  background:var(--glass2);border:1px solid var(--bd);
+  border-radius:99px;padding:9px 15px;
+  box-shadow:var(--inset-s);
+}
+.search svg{width:17px;height:17px;fill:none;stroke:var(--mut);stroke-width:1.8;stroke-linecap:round}
+.search input{
+  border:0;background:transparent;outline:none;flex:1;min-width:0;
+  font-size:13.5px;font-weight:500;color:var(--ink);
+}
+.search input::placeholder{color:var(--mut)}
+
+.iconbtn{
+  --btn-h:4px;
+  width:40px;height:40px;border-radius:13px;flex:none;
+  display:grid;place-items:center;cursor:pointer;
+  background:var(--btn-face);border:1px solid var(--bd);color:var(--mut);
+  position:relative;
+  box-shadow:inset 0 1px 0 var(--btn-hi),0 var(--btn-h) 0 var(--btn-edge),0 calc(var(--btn-h) + 5px) 12px var(--btn-sh);
+  transition:background .16s,color .16s,transform .16s,box-shadow .16s,border-color .16s;
+}
+.iconbtn svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.iconbtn:hover{color:var(--g1);border-color:rgba(31,122,77,.3);transform:translateY(-1px)}
+.iconbtn:active{transform:translateY(3px);--btn-h:1px}
+.iconbtn:focus-visible{outline:none;box-shadow:inset 0 1px 0 var(--btn-hi),0 var(--btn-h) 0 var(--btn-edge),0 0 0 4px var(--tint)}
+.iconbtn[disabled],.iconbtn:disabled{opacity:.55;pointer-events:none;transform:none;--btn-h:2px}
+.menubtn{display:none}
+
+.ubtn{
+  --btn-h:4px;
+  display:flex;align-items:center;gap:8px;
+  padding:10px 15px;border-radius:13px;flex:none;
+  background:var(--btn-face);border:1px solid var(--bd);
+  font-size:13px;font-weight:700;color:var(--ink);
+  box-shadow:inset 0 1px 0 var(--btn-hi),0 var(--btn-h) 0 var(--btn-edge),0 calc(var(--btn-h) + 5px) 12px var(--btn-sh);
+  transition:background .16s,transform .16s,box-shadow .16s,color .16s,border-color .16s;
+}
+.ubtn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ubtn:hover{color:var(--g1);border-color:rgba(31,122,77,.3);transform:translateY(-1px)}
+.ubtn:active{transform:translateY(3px);--btn-h:1px}
+.ubtn:focus-visible{outline:none;box-shadow:inset 0 1px 0 var(--btn-hi),0 var(--btn-h) 0 var(--btn-edge),0 0 0 4px var(--tint)}
+.ubtn[disabled],.ubtn:disabled{opacity:.55;pointer-events:none;transform:none;--btn-h:2px}
+
+.notif-wrap{position:relative;flex:none}
+.dot-em{
+  position:absolute;top:6px;right:6px;width:9px;height:9px;
+  border-radius:50%;background:#e0574a;border:2px solid var(--bg);
+}
+.iconbtn .dot-em.hide,.ic em.hide{display:none}
+.notif-panel{
+  position:absolute;top:calc(100% + 12px);right:0;width:330px;max-width:86vw;
+  background:var(--glass);border:1px solid var(--bd);border-radius:20px;
+  backdrop-filter:blur(24px) saturate(1.5);-webkit-backdrop-filter:blur(24px) saturate(1.5);
+  box-shadow:var(--sh);overflow:hidden;z-index:60;
+  opacity:0;visibility:hidden;transform:translateY(-8px);
+  transition:.22s cubic-bezier(.22,1,.36,1);
+}
+.notif-panel.on{opacity:1;visibility:visible;transform:none}
+.notif-head{
+  display:flex;align-items:center;gap:10px;
+  padding:14px 16px;border-bottom:1px solid var(--line);
+  font-size:13px;font-weight:800;
+}
+.notif-head button{
+  border:0;background:transparent;color:var(--g1);
+  font-size:12px;font-weight:700;cursor:pointer;
+}
+.notif-head button:hover{text-decoration:underline}
+.notif-list{max-height:320px;overflow:auto;padding:6px}
+.notif-item{
+  display:flex;align-items:flex-start;gap:11px;
+  padding:10px;border-radius:13px;transition:background .16s;
+}
+.notif-item:hover{background:var(--tint)}
+.notif-item .nic{
+  width:32px;height:32px;flex:none;border-radius:10px;
+  display:grid;place-items:center;background:var(--tint);color:var(--g1);
+}
+.notif-item .nic svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.notif-item b{display:block;font-size:12.8px;font-weight:700}
+.notif-item small{display:block;font-size:11.5px;color:var(--mut);line-height:1.4;margin-top:2px}
+.notif-item time{margin-left:auto;font-size:10.5px;color:var(--mut);flex:none;white-space:nowrap}
+.notif-empty{padding:22px 16px;text-align:center;font-size:12.5px;color:var(--mut);line-height:1.5}
+.notif-foot{padding:11px 16px;border-top:1px solid var(--line);text-align:center}
+.notif-foot a{font-size:12.5px;font-weight:700;color:var(--g1)}
+.notif-foot a:hover{text-decoration:underline}
+
+.themebtn .moon{display:none}
+[data-theme=dark] .themebtn .moon{display:block}
+[data-theme=dark] .themebtn .sun{display:none}
+
+.who{display:flex;align-items:center;gap:10px;flex:none;min-width:0}
+.who .av{
+  width:38px;height:38px;border-radius:12px;flex:none;overflow:hidden;
+  display:grid;place-items:center;background:linear-gradient(135deg,var(--pb1),var(--pb2));
+  color:#fff;font-weight:800;font-size:15px;
+}
+.who .av img{width:100%;height:100%;object-fit:contain;padding:5px;background:#fff}
+.who b{display:block;font-size:13px;font-weight:700;white-space:nowrap}
+.who small{display:block;font-size:11.5px;color:var(--mut);white-space:nowrap}
+
+/* ----------------------------------------------- 6. page head ------------- */
+.head{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:18px;flex-wrap:wrap;padding:6px 4px 0;
+}
+.head .crumb{
+  font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:700;color:var(--g1);margin-bottom:7px;
+}
+.head h1{font-size:32px;font-weight:800;letter-spacing:-.03em;line-height:1.12}
+.head p{font-size:13.5px;color:var(--mut);margin-top:7px;max-width:62ch;line-height:1.55}
+.head .acts{display:flex;gap:9px;flex-wrap:wrap}
+.spacer{flex:1}
+
+/* ----------------------------------------------- 7. grid ------------------ */
+.g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px}
+.c3{grid-column:span 3}
+.c4{grid-column:span 4}
+.c5{grid-column:span 5}
+.c6{grid-column:span 6}
+.c7{grid-column:span 7}
+.c8{grid-column:span 8}
+.c12{grid-column:span 12}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:18px}
+
+/* ----------------------------------------------- 8. cards ----------------- */
+.card{
+  border-radius:26px;padding:24px;min-width:0;
+  border:1px solid var(--bd);
+}
+.card>h3{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  font-size:15.5px;font-weight:800;letter-spacing:-.01em;margin-bottom:16px;
+}
+.card-h{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-bottom:16px;
+}
+.card-h h2{font-size:17px;font-weight:800;letter-spacing:-.02em}
+.card-h .sub{font-size:12.5px;color:var(--mut);font-weight:500}
+
+.sub{font-size:13px;color:var(--mut)}
+.muted{color:var(--mut)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
+.narrow{max-width:62ch}
+.new{color:var(--g1);font-weight:700}
+.num{font-variant-numeric:tabular-nums;font-weight:700}
+
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 11px;border-radius:99px;
+  font-size:11.5px;font-weight:700;
+  background:var(--tint);color:var(--g1);
+  border:1px solid transparent;white-space:nowrap;
+}
+.chip.sand{background:rgba(201,166,107,.18);color:#8a6a2b}
+.chip.red{background:rgba(224,87,74,.16);color:#a8382d}
+.chip.green{background:rgba(31,122,77,.16);color:var(--g1)}
+.chip.amber{background:rgba(201,166,107,.18);color:#8a6a2b}
+.chip.slate{background:var(--track);color:var(--mut)}
+.chip.muted{background:var(--track);color:var(--mut)}
+.chip.star{background:rgba(201,166,107,.2);color:#8a6a2b}
+[data-theme=dark] .chip.sand,[data-theme=dark] .chip.amber,[data-theme=dark] .chip.star{color:#e0c48d}
+[data-theme=dark] .chip.red{color:#f09a90}
+
+.tag{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 9px;border-radius:8px;font-size:11px;font-weight:700;
+  background:var(--track);color:var(--mut);
+}
+.tag.g{background:var(--tint);color:var(--g1)}
+
+.hint{font-size:12px;color:var(--mut);margin-top:7px;line-height:1.5}
+.hintbox{
+  font-size:12.4px;color:var(--mut);line-height:1.6;
+  background:var(--tint);border-left:3px solid var(--g1);
+  border-radius:0 12px 12px 0;padding:11px 14px;margin-top:14px;
+}
+
+/* stat cards */
+.stat{position:relative;overflow:hidden;border-radius:26px;padding:22px}
+.stat .ic{
+  width:42px;height:42px;border-radius:13px;display:grid;place-items:center;
+  background:var(--tint);color:var(--g1);margin-bottom:14px;
+}
+.stat .ic svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.stat .n{font-size:34px;font-weight:800;letter-spacing:-.04em;line-height:1.05}
+.stat .t{font-size:13px;font-weight:700;margin-top:5px}
+.stat .d{font-size:11.8px;color:var(--mut);margin-top:5px;line-height:1.5}
+.stat .ft{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;flex-wrap:wrap}
+.stat .ic,.stat .n,.stat .t,.stat .d,.stat .ft{position:relative;z-index:1}
+.stat:before{
+  content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;
+  border-radius:50%;background:var(--tint);opacity:.7;
+}
+.stat.hero{background:linear-gradient(150deg,var(--pb1),var(--pb2));border-color:transparent;color:#fff}
+.stat.hero .ic{background:rgba(255,255,255,.2);color:#fff}
+.stat.hero .d{color:rgba(255,255,255,.82)}
+.stat.hero .chip{background:rgba(255,255,255,.22);color:#fff}
+.stat.hero:before{background:rgba(255,255,255,.14)}
+
+.spk{display:block;line-height:0}
+.spk svg{display:block}
+
+/* ----------------------------------------------- 9. controls -------------- */
+/* Every clickable slab shares one build: gradient face, inset highlight on
+   the top edge, a solid darker lip under it (4px, 3px on .sm, 2px on .xs)
+   and a soft drop shadow. Hover lifts 1px, press sinks 3px and the lip
+   shrinks to 1px. Colours come from the tokens, so light and dark only swap
+   variables and never need a second rule set. */
+.btn{
+  --btn-h:4px;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 17px;border-radius:14px;cursor:pointer;
+  font-size:13.5px;font-weight:700;letter-spacing:-.01em;
+  background:var(--btn-face);border:1px solid var(--bd);color:var(--ink);
+  box-shadow:inset 0 1px 0 var(--btn-hi),0 var(--btn-h) 0 var(--btn-edge),0 calc(var(--btn-h) + 5px) 12px var(--btn-sh);
+  transition:transform .16s,background .16s,box-shadow .16s,color .16s,border-color .16s;
+}
+.btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.btn:hover{transform:translateY(-1px);color:var(--g1);border-color:rgba(31,122,77,.3)}
+.btn:active{transform:translateY(3px);--btn-h:1px}
+.btn:focus-visible{outline:none;box-shadow:inset 0 1px 0 var(--btn-hi),0 var(--btn-h) 0 var(--btn-edge),0 0 0 4px var(--tint),0 calc(var(--btn-h) + 6px) 14px var(--btn-sh)}
+.btn[disabled],.btn:disabled{opacity:.55;pointer-events:none;transform:none;--btn-h:2px;filter:saturate(.55)}
+
+.btn.pri{--btn-face:var(--btn-face-pri);--btn-edge:var(--btn-edge-pri);color:#fff;border-color:transparent}
+.btn.pri:hover{color:#fff;filter:brightness(1.06);border-color:transparent}
+.btn.sm{--btn-h:3px;padding:8px 13px;font-size:12.5px;border-radius:12px}
+.btn.xs{--btn-h:2px;padding:6px 11px;font-size:11.5px;border-radius:10px}
+.btn.ghost{--btn-face:var(--btn-face-ghost);--btn-edge:var(--btn-edge-ghost);border-color:transparent}
+.btn.ghost:hover{color:var(--g1);border-color:transparent;filter:brightness(1.03)}
+.btn.danger,.btn.red{--btn-face:var(--btn-face-red);--btn-edge:var(--btn-edge-red);color:var(--btn-ink-2);border-color:transparent}
+.btn.danger:hover,.btn.red:hover{color:var(--btn-ink-2);border-color:transparent;filter:brightness(1.05)}
+
+.seg{
+  display:inline-flex;gap:3px;margin-left:auto;
+  background:var(--track);padding:3px;border-radius:11px;
+}
+.seg button{
+  --btn-h:3px;
+  border:0;background:transparent;cursor:pointer;
+  padding:6px 12px;border-radius:9px;
+  font-size:11.5px;font-weight:700;color:var(--mut);box-shadow:none;
+  transition:background .16s,color .16s,transform .16s,box-shadow .16s;
+}
+.seg button:hover{color:var(--ink);transform:translateY(-1px)}
+.seg button.on{
+  background:var(--btn-face);color:var(--g1);
+  box-shadow:inset 0 1px 0 var(--btn-hi),0 var(--btn-h) 0 var(--btn-edge),0 calc(var(--btn-h) + 4px) 8px var(--btn-sh);
+}
+.seg button.on:active{transform:translateY(3px);--btn-h:1px}
+.seg button:focus-visible{outline:none;box-shadow:0 0 0 3px var(--tint)}
+
+.filters{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  margin-bottom:16px;
+}
+.filters .search{flex:1;min-width:200px}
+
+/* ----------------------------------------------- 10. tables --------------- */
+/* The wrap is the scroll container: it caps its own height, the header
+   sticks inside it and the page itself never scrolls sideways because of a
+   wide table. Row height is fixed at 56px so every row lines up, long cells
+   take one line with an ellipsis (.cell-media, or .ell / .tbl td.ell). */
+.tbl-wrap{
+  overflow:auto;max-width:100%;max-height:min(72vh,760px);
+  border-radius:18px;-webkit-overflow-scrolling:touch;
+}
+.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:13.2px}
+.tbl th{
+  text-align:left;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:700;color:var(--mut);padding:11px 13px;
+  border-bottom:1px solid var(--line);white-space:nowrap;
+}
+.tbl thead th{
+  position:sticky;top:0;z-index:3;
+  background:var(--glass);
+  backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+}
+.tbl thead th:first-child{border-radius:18px 0 0 0}
+.tbl thead th:last-child{border-radius:0 18px 0 0}
+.tbl td{
+  padding:10px 13px;height:56px;border-bottom:1px solid var(--line);
+  vertical-align:middle;white-space:nowrap;
+}
+.tbl td.wrap{white-space:normal}
+.tbl td.ell{max-width:36ch;overflow:hidden;text-overflow:ellipsis}
+.tbl tbody tr{transition:background .16s}
+.tbl tbody tr:nth-child(even){background:var(--zebra)}
+.tbl tbody tr:hover{background:var(--tint)}
+.tbl tbody tr:last-child td{border-bottom:0}
+.tbl td b{font-weight:700}
+.tbl td small{display:block;font-size:11.5px;color:var(--mut);margin-top:3px}
+
+.cell-media{display:flex;align-items:center;gap:11px;min-width:0}
+.thumb{
+  width:44px;height:44px;flex:none;border-radius:11px;object-fit:cover;
+  background:var(--track);box-shadow:var(--inset-s);
+}
+.cell-media div{min-width:0}
+.cell-media .t{font-weight:700;font-size:13.2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cell-media .s{font-size:11.5px;color:var(--mut);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.row-actions{display:flex;gap:7px;justify-content:flex-end;flex-wrap:wrap}
+
+.pager{display:flex;gap:7px;align-items:center;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.pager a,.pager span{
+  --btn-h:3px;
+  min-width:34px;height:34px;padding:0 10px;border-radius:11px;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:12.5px;font-weight:700;color:var(--mut);
+  background:var(--btn-face);border:1px solid var(--bd);
+  box-shadow:inset 0 1px 0 var(--btn-hi),0 var(--btn-h) 0 var(--btn-edge),0 calc(var(--btn-h) + 4px) 8px var(--btn-sh);
+  transition:transform .16s,box-shadow .16s,color .16s,background .16s,border-color .16s;
+}
+.pager a:hover{color:var(--g1);border-color:rgba(31,122,77,.3);transform:translateY(-1px)}
+.pager a:active{transform:translateY(3px);--btn-h:1px}
+.pager a:focus-visible{outline:none;box-shadow:inset 0 1px 0 var(--btn-hi),0 var(--btn-h) 0 var(--btn-edge),0 0 0 4px var(--tint)}
+.pager a[disabled],.pager span{opacity:.7;pointer-events:none}
+.pager .on{
+  --btn-face:var(--btn-face-pri);--btn-edge:var(--btn-edge-pri);
+  color:#fff;border-color:transparent;opacity:1;pointer-events:auto;
+}
+
+.empty{
+  text-align:center;padding:38px 20px;color:var(--mut);
+}
+.empty .ic{
+  width:56px;height:56px;margin:0 auto 14px;border-radius:18px;
+  display:grid;place-items:center;background:var(--tint);color:var(--g1);
+}
+.empty .ic svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.empty b{display:block;font-size:15px;font-weight:800;color:var(--ink);margin-bottom:6px}
+.empty p{font-size:13px;max-width:46ch;margin:0 auto;line-height:1.6}
+
+.list-plain{list-style:none;display:grid;gap:10px}
+.list-plain li{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;font-weight:600;
+}
+.list-plain li small{
+  margin-left:auto;font-size:12.5px;font-weight:800;color:var(--mut);
+  font-variant-numeric:tabular-nums;
+}
+.list-plain .dot{width:9px;height:9px;border-radius:50%;flex:none}
+
+/* ------------------------- 11. data widgets ------------------------------- */
+.chart{width:100%;overflow:hidden}
+.chart svg{width:100%;height:auto;display:block}
+.chart[hidden]{display:none}
+
+.lg{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+.lg span{display:flex;align-items:center;gap:7px;font-size:11.8px;font-weight:600;color:var(--mut)}
+.lg i{width:10px;height:10px;border-radius:3px;display:block}
+
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+.gauge{position:relative;text-align:center}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge .v{
+  position:absolute;left:0;right:0;bottom:4px;
+  font-size:23px;font-weight:800;letter-spacing:-.03em;
+}
+.gauge .v small{display:block;font-size:11px;font-weight:600;color:var(--mut);margin-top:3px;letter-spacing:0}
+
+.donutwrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.donut{position:relative;width:170px;flex:none}
+.donut svg{width:100%;height:auto;display:block;transform:rotate(-90deg)}
+.donut b{
+  position:absolute;inset:0;display:grid;place-content:center;
+  text-align:center;font-size:27px;font-weight:800;letter-spacing:-.04em;
+}
+.donut b small{display:block;font-size:10.5px;font-weight:600;color:var(--mut);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+.leg{display:grid;gap:9px;flex:1;min-width:150px}
+.leg span{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600}
+.leg i{width:11px;height:11px;border-radius:4px;flex:none}
+
+.dist{
+  display:grid;grid-template-columns:minmax(74px,auto) 1fr auto;
+  align-items:center;gap:11px;
+  font-size:12.5px;font-weight:600;margin-bottom:11px;
+}
+.dist .tr{
+  height:9px;border-radius:99px;background:var(--track);overflow:hidden;
+  box-shadow:var(--inset-s);
+}
+.dist .tr i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--sage),var(--g1));transition:width .8s}
+.dist .star{color:var(--sand);font-weight:800}
+
+.bar{height:9px;border-radius:99px;background:var(--track);overflow:hidden;box-shadow:var(--inset-s);margin-bottom:14px}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--sage),var(--g1));transition:width .8s}
+
+.tg{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:13px 0;border-top:1px solid var(--line);font-size:13.2px;font-weight:600;
+}
+.tg>span{min-width:0}
+
+.sw{
+  --btn-h:3px;
+  width:46px;height:26px;border-radius:99px;flex:none;cursor:pointer;
+  background:var(--track);border:1px solid var(--bd);position:relative;
+  transition:background .2s,transform .16s,box-shadow .16s;
+  box-shadow:inset 0 1px 0 var(--btn-hi),0 var(--btn-h) 0 var(--btn-edge),0 calc(var(--btn-h) + 4px) 8px var(--btn-sh);
+}
+.sw:after{
+  content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;
+  border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.2);
+  transition:transform .2s cubic-bezier(.22,1,.36,1);
+}
+.sw:hover{transform:translateY(-1px)}
+.sw:active{transform:translateY(3px);--btn-h:1px}
+.sw:focus-visible{outline:none;box-shadow:inset 0 1px 0 var(--btn-hi),0 var(--btn-h) 0 var(--btn-edge),0 0 0 4px var(--tint)}
+.sw.on{
+  --btn-edge:var(--btn-edge-pri);
+  background:linear-gradient(135deg,var(--pb1),var(--pb2));border-color:transparent;
+}
+.sw.on:after{transform:translateX(20px)}
+
+/* ----------------------------------------------- 12. forms ---------------- */
+/* One system for every form in the panel: Inter on all form copy, a 13px
+   label over a 46px control, a 2-column .form-grid (1 column below 640px),
+   group titles over a hairline, a collapsed "More details" block and one
+   compact .drop picker that shows the current file beside it. Every state
+   keeps its box-shadow declared exactly once. */
+[hidden]{display:none!important}
+
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
+.span2{grid-column:1/-1}
+.form-actions{
+  display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;
+  margin-top:20px;padding-top:16px;border-top:1px solid var(--line);
+}
+/* right-hand group of a footer (e.g. Cancel left, choices right) */
+.form-actions .fa-r{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+/* inside a modal the footer sticks to the bottom of the scroll area, so
+   Cancel and Save stay on screen no matter how long the form is. It is
+   transparent: the sheet's own glass shows through, only the hairline
+   separates it from the form. The negative side margins cancel the form's
+   28px padding so the border runs the full width of the sheet. */
+.sheet>form .form-actions{
+  position:sticky;bottom:0;z-index:2;margin-top:auto;
+  background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;
+  margin-left:-28px;margin-right:-28px;
+  padding:16px 28px 20px;
+}
+/* the note above the footer never sits flush against it */
+.sheet>form>.hintbox,.sheet>p.muted{margin-bottom:16px}
+
+/* field groups: small uppercase title, hairline divider, then the fields */
+.fgroup+.fgroup,.fgroup+.fmore,.fmore+.fgroup,.fmore+.fmore{margin-top:22px}
+.fgroup-t{
+  font-family:var(--font-form);font-size:13px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.09em;color:var(--ink);opacity:.72;
+  padding-bottom:9px;border-bottom:1px solid var(--line);margin-bottom:16px;
+}
+.fmore{border-top:1px solid var(--line);margin-top:22px;padding-top:12px}
+.fmore>summary{
+  list-style:none;cursor:pointer;user-select:none;
+  display:flex;align-items:center;gap:9px;
+  font-family:var(--font-form);font-size:13px;font-weight:600;
+  color:var(--ink);opacity:.78;
+}
+.fmore>summary::-webkit-details-marker{display:none}
+.fmore>summary::after{
+  content:"";width:7px;height:7px;margin-left:auto;
+  border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+  transform:rotate(-45deg);transition:transform .2s;opacity:.7;
+}
+.fmore[open]>summary{margin-bottom:16px}
+.fmore[open]>summary::after{transform:rotate(45deg)}
+
+.field{display:grid;gap:8px;min-width:0}
+.field>label{
+  font-family:var(--font-form);font-size:13px;font-weight:600;
+  color:var(--ink);color:color-mix(in srgb,var(--ink) 85%,transparent);
+  letter-spacing:.01em;line-height:1.35;
+}
+.req{color:#e0574a;font-style:normal;font-weight:700}
+.check,.field.check{display:flex;align-items:center;gap:9px;font-family:var(--font-form);font-size:13px;font-weight:600;cursor:pointer}
+.check input{width:17px;height:17px;accent-color:var(--g1);cursor:pointer}
+
+input[type=text],input[type=search],input[type=email],input[type=password],
+input[type=number],input[type=url],input[type=date],input:not([type]),
+select,textarea{
+  font-family:var(--font-form);
+  width:100%;border:1px solid var(--bd);outline:none;
+  background:var(--glass2);color:var(--ink);
+  border-radius:var(--field-r);padding:0 var(--field-px);height:var(--field-h);
+  font-size:14.5px;font-weight:500;line-height:1.35;
+  box-shadow:var(--emb-in),var(--emb-hi),var(--inset-s);
+  transition:border-color .18s,box-shadow .18s,background .18s;
+}
+input[type=search]::-webkit-search-cancel-button{cursor:pointer}
+select{cursor:pointer;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235d6f66' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;background-size:16px;
+  padding-right:36px;
+}
+textarea{height:auto;min-height:110px;padding:12px var(--field-px);resize:vertical;line-height:1.55}
+input::placeholder,textarea::placeholder{color:var(--mut);font-size:14px;opacity:1}
+
+/* base: the embossed well with its lit lower edge (declared above, once) */
+/* hover */
+input[type=text]:hover,input[type=search]:hover,input[type=email]:hover,
+input[type=password]:hover,input[type=number]:hover,input[type=url]:hover,
+input[type=date]:hover,input:not([type]):hover,
+select:hover,textarea:hover{
+  border-color:rgba(31,122,77,.34);background:var(--glass);
+  box-shadow:var(--emb-in),var(--emb-hi),var(--inset-s);
+}
+/* focus - last of the interactive states so the ring is never overridden
+   while someone is typing */
+input[type=text]:focus,input[type=search]:focus,input[type=email]:focus,
+input[type=password]:focus,input[type=number]:focus,input[type=url]:focus,
+input[type=date]:focus,input:not([type]):focus,
+select:focus,textarea:focus{
+  border-color:var(--g1);background:var(--glass);
+  box-shadow:0 0 0 4px var(--tint),var(--emb-in);
+}
+/* disabled - listed with the same specificity as hover/focus so a disabled
+   field can never pick up an interactive state */
+input[type=text]:disabled,input[type=search]:disabled,input[type=email]:disabled,
+input[type=password]:disabled,input[type=number]:disabled,input[type=url]:disabled,
+input[type=date]:disabled,input:not([type]):disabled,
+select:disabled,textarea:disabled{
+  opacity:.7;cursor:not-allowed;color:var(--mut);
+  background:var(--track);border-color:var(--line);box-shadow:none;
+}
+/* invalid - a filled field that does not validate (the placeholder guard
+   keeps an untouched required box from turning red before anyone types) */
+input:invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown){
+  border-color:#e0574a;
+  box-shadow:0 0 0 4px rgba(224,87,74,.18),var(--emb-in);
+}
+/* invalid - once the user has actually touched the field, selects included */
+input:user-invalid,select:user-invalid,textarea:user-invalid{
+  border-color:#e0574a;
+  box-shadow:0 0 0 4px rgba(224,87,74,.18),var(--emb-in);
+}
+
+/* helper copy and form buttons share the fields' face */
+.hint,.hintbox,.form-actions .btn,.modal .btn{font-family:var(--font-form)}
+.hint{font-size:12.5px}
+.hintbox{font-size:12.5px}
+
+/* inline validation: a red block inside the form + 12.5px copy under a field */
+.form-err{
+  display:block;padding:11px 14px;border-radius:12px;margin-bottom:16px;
+  background:rgba(224,87,74,.12);border:1px solid rgba(224,87,74,.32);
+  color:#a8382d;font-family:var(--font-form);font-size:12.5px;
+  font-weight:600;line-height:1.5;
+}
+[data-theme=dark] .form-err{color:#f09a90;background:rgba(224,87,74,.16)}
+.field .err{font-family:var(--font-form);font-size:12.5px;font-weight:600;color:#c2413a}
+
+/* colour picker: the same 46px box as every control, round swatch + hex */
+.color-ctl{
+  display:flex;align-items:center;gap:10px;height:var(--field-h);
+  padding:0 12px;border:1px solid var(--bd);border-radius:var(--field-r);
+  background:var(--glass2);box-shadow:var(--emb-in),var(--emb-hi),var(--inset-s);
+}
+.color-ctl:focus-within{border-color:var(--g1);box-shadow:0 0 0 4px var(--tint),var(--emb-in)}
+.color-ctl input[type=color]{
+  width:30px;height:30px;flex:none;padding:0;border:0;background:none;
+  border-radius:50%;cursor:pointer;box-shadow:none;overflow:hidden;
+}
+.color-ctl input[type=color]::-webkit-color-swatch-wrapper{padding:0}
+.color-ctl input[type=color]::-webkit-color-swatch{border:none;border-radius:50%}
+.color-ctl input[type=color]::-moz-color-swatch{border:none;border-radius:50%}
+.color-ctl .hex{
+  font-family:var(--font-form);font-size:14.5px;font-weight:500;
+  color:var(--ink);text-transform:uppercase;letter-spacing:.02em;
+}
+
+/* file picker: current file previewed on the left, one compact drop beside it */
+.media{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.media-prev{
+  width:140px;height:140px;max-width:160px;flex:none;object-fit:cover;
+  border-radius:14px;background:var(--track);box-shadow:var(--inset-s);
+}
+.media-cur{display:grid;gap:7px;min-width:0;flex:1 1 230px;align-content:center}
+.media-cur audio,.media-cur video{width:100%;max-width:360px;border-radius:10px;background:var(--track)}
+.media-cur .fname{font-family:var(--font-form);font-size:12.5px;color:var(--mut);word-break:break-all}
+.drop{
+  display:flex;align-items:center;gap:11px;text-align:left;
+  flex:1 1 190px;min-width:170px;min-height:46px;
+  border:1.5px dashed rgba(31,122,77,.38);border-radius:var(--field-r);
+  background:var(--tint);padding:13px 14px;cursor:pointer;
+  font-family:var(--font-form);font-size:13px;font-weight:600;color:var(--mut);
+  transition:border-color .18s,background .18s;
+}
+.drop:hover,.drop.over{border-color:var(--g1);background:rgba(31,122,77,.16);color:var(--g1)}
+.drop svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.drop input{display:none}
+.drop-btn{
+  flex:none;display:inline-flex;align-items:center;gap:6px;
+  padding:8px 15px;border-radius:99px;background:var(--btn-face);
+  border:1px solid var(--bd);color:var(--btn-ink);
+  box-shadow:inset 0 1px 0 var(--btn-hi),0 2px 0 var(--btn-edge);
+  font-family:var(--font-form);font-size:12.5px;font-weight:600;
+}
+.drop small{font-weight:500;font-size:12.5px;opacity:.85}
+
+/* ----------------------------------------------- 13. modal / sheet -------- */
+.scrim{
+  position:fixed;inset:0;background:rgba(5,15,10,.42);
+  backdrop-filter:blur(4px);z-index:39;opacity:0;pointer-events:none;
+  transition:.3s;
+}
+.scrim.on{opacity:1;pointer-events:auto}
+
+.modal{
+  position:fixed;inset:0;z-index:70;display:none;
+  align-items:center;justify-content:center;padding:20px;
+  background:rgba(5,15,10,.45);backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.modal.on{display:flex}
+.modal-h{
+  display:flex;align-items:center;gap:12px;flex:none;
+  padding:16px 28px;border-bottom:1px solid var(--line);
+}
+.modal-h h3{font-size:16px;font-weight:800;letter-spacing:-.02em}
+.modal-h .spacer{flex:1}
+
+/* Three fixed parts inside one 90vh box: sticky header, scrolling body
+   (scrollbar-gutter so it never sits on the fields), sticky footer. */
+.sheet{
+  width:min(780px,100%);max-height:90vh;overflow:hidden;
+  display:flex;flex-direction:column;
+  background:var(--glass);border:1px solid var(--bd);
+  backdrop-filter:blur(26px) saturate(1.5);-webkit-backdrop-filter:blur(26px) saturate(1.5);
+  border-radius:26px;box-shadow:var(--sh);
+  animation:pop .3s cubic-bezier(.22,1,.36,1);
+}
+.sheet>form,.sheet>.body{
+  flex:1;min-height:0;overflow-y:auto;scrollbar-gutter:stable;
+  padding:24px 28px 0;display:flex;flex-direction:column;
+  scrollbar-width:thin;scrollbar-color:rgba(93,111,102,.5) transparent;
+}
+.sheet>form::-webkit-scrollbar,.sheet>.body::-webkit-scrollbar{width:9px}
+.sheet>form::-webkit-scrollbar-thumb,.sheet>.body::-webkit-scrollbar-thumb{
+  background:rgba(93,111,102,.45);border-radius:99px;
+  border:2px solid transparent;background-clip:content-box;
+}
+.sheet>p{padding:2px 28px 6px;color:var(--mut);font-family:var(--font-form);font-size:13.5px;line-height:1.6}
+.sheet>.form-actions{flex:none;padding:16px 28px 20px;margin-top:auto}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+
+.preview{
+  width:100%;border-radius:14px;background:var(--track);
+  box-shadow:var(--inset-s);margin-top:10px;max-height:230px;object-fit:contain;
+}
+.qr{width:120px;height:120px;border-radius:14px;object-fit:contain;background:#fff;padding:8px}
+
+/* ------------------------- 14. notifications, toast, flash --------------- */
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translate(-50%,24px);
+  background:var(--toast-bg);color:var(--toast-ink);
+  padding:13px 20px;border-radius:99px;
+  font-size:13.5px;font-weight:600;box-shadow:0 16px 34px rgba(0,0,0,.3);
+  opacity:0;pointer-events:none;transition:.3s;z-index:90;max-width:90vw;text-align:center;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.err{background:var(--toast-err-bg);color:var(--toast-err-ink)}
+
+.flash{
+  display:flex;align-items:center;gap:10px;
+  padding:13px 17px;border-radius:16px;font-size:13.3px;font-weight:600;
+  background:var(--tint);border:1px solid rgba(31,122,77,.3);color:var(--g1);
+}
+.flash.err{background:rgba(224,87,74,.14);border-color:rgba(224,87,74,.32);color:#a8382d}
+[data-theme=dark] .flash.err{color:#f09a90}
+
+/* ----------------------------------------------- 15. login ---------------- */
+.login-page{display:grid;place-items:center;padding:24px}
+.login-wrap{width:min(430px,100%);animation:pop .35s cubic-bezier(.22,1,.36,1)}
+/* Full lockup straight on the page background. Deliberately no card, tile,
+   circle, border, glass panel or glow behind it: the wordmark is part of the
+   image, and any shadow or panel would read as a badge around it. */
+.login-logo{display:block;width:min(220px,62vw);height:auto;margin:0 auto 26px}
+.login-card{
+  background:var(--glass);border:1px solid var(--bd);
+  backdrop-filter:blur(24px) saturate(1.5);-webkit-backdrop-filter:blur(24px) saturate(1.5);
+  box-shadow:var(--sh);border-radius:28px;padding:32px 30px;
+}
+.login-card .sub{font-size:13px;color:var(--mut);text-align:center;margin:0 0 20px}
+.login-card .field{margin-bottom:14px}
+/* labels + inputs on the sign in card: Inter, a touch larger, taller fields */
+.login-card .field>label{font-family:var(--font-form);font-size:14.5px}
+.login-card .inp input{height:48px}
+.login-card input::placeholder{font-family:var(--font-form);font-size:14.5px}
+/* the sign in button: full width, 50px tall, 15px/700, no uppercase, arrow
+   after the label (the .lbl class is the sidebar section label - never use
+   it on a button) */
+.login-card .btn{
+  width:100%;height:50px;padding:0 18px;
+  font-size:15px;font-weight:700;letter-spacing:0;text-transform:none;
+  justify-content:center;gap:9px;
+}
+.login-card .btn .btn-t{display:inline-flex;align-items:center;gap:9px}
+.login-card .btn .arw{width:16px;height:16px;flex:none}
+.login-foot{font-size:12.4px;color:var(--mut);text-align:center;margin-top:18px;line-height:1.9}
+.login-foot a{color:var(--g1);font-weight:700}
+.login-foot a:hover{text-decoration:underline}
+
+.login-err{
+  display:none;align-items:flex-start;gap:9px;
+  background:rgba(224,87,74,.14);border:1px solid rgba(224,87,74,.32);
+  color:#a8382d;border-radius:14px;padding:11px 13px;
+  font-size:12.6px;font-weight:600;line-height:1.5;margin-bottom:16px;
+}
+[data-theme=dark] .login-err{color:#f09a90}
+.login-err svg{
+  width:17px;height:17px;flex:none;
+  fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;
+}
+.login-err.on{display:flex;animation:pop .2s}
+
+.inp{position:relative;display:flex;align-items:center}
+.inp>svg{
+  position:absolute;left:14px;width:17px;height:17px;
+  fill:none;stroke:var(--mut);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;
+  pointer-events:none;
+}
+.inp input{padding-left:42px;padding-right:44px}
+.login-eye{
+  position:absolute;right:7px;width:32px;height:32px;flex:none;
+  display:grid;place-items:center;cursor:pointer;border:0;border-radius:10px;
+  background:transparent;color:var(--mut);transition:background .16s,color .16s;
+}
+.login-eye svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.login-eye:hover{background:var(--tint);color:var(--g1)}
+.login-eye .eye-off{display:none}
+.login-eye.on .eye-on{display:none}
+.login-eye.on .eye-off{display:block}
+
+#go .btn-busy{display:none}
+#go.loading .btn-t{display:none}
+#go.loading .btn-busy{display:inline}
+#go.loading:before{
+  content:"";width:15px;height:15px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.4);border-top-color:#fff;
+  animation:spin .7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ----------------------------------------------- 16. utilities ------------ */
+.hide{display:none !important}
+.card h3 .seg{margin-left:auto}
+
+/* layout + spacing helpers: the replacements for the inline styles that used
+   to be scattered through the PHP. Spacing comes off the --s* scale only. */
+.row{display:flex;align-items:center;gap:var(--s2)}
+.row-end{justify-content:flex-end}
+.stack{display:flex;flex-direction:column;gap:var(--s2);min-width:0}
+.w-100{width:100%}
+.mt-8{margin-top:var(--s2)}
+.mt-14{margin-top:var(--s3)}
+.mt-20{margin-top:var(--s4)}
+.center{text-align:center}
+.grow{flex:1;min-width:0}
+.nowrap{white-space:nowrap}
+.ta-right{text-align:right}
+.ell{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* motion is decorative everywhere, not only in the smoke layer */
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+/* ----------------------------------------------- 17. responsive ----------- */
+/* Verified at 1440 / 1024 / 768 / 390. Nothing can push the page sideways:
+   every grid track is minmax(0,1fr), every panel is allowed to shrink
+   (min-width:0) and tables only ever scroll inside their own .tbl-wrap. */
+.app,.main,.content,.head,.g12>*{min-width:0}
+.tbl-wrap{max-width:100%}
+
+@media(max-width:1440px){
+  .head h1{font-size:30px}
+  .stat .n{font-size:32px}
+  .tbl-wrap{max-height:min(70vh,680px)}
+}
+@media(max-width:1240px){
+  .c3{grid-column:span 6}
+  .c4,.c5{grid-column:span 6}
+  .c7,.c8{grid-column:span 12}
+  .c6{grid-column:span 6}
+  .donutwrap{justify-content:center}
+}
+@media(max-width:1100px){
+  .app{grid-template-columns:224px minmax(0,1fr)}
+  .head h1{font-size:28px}
+  .stats{grid-template-columns:repeat(auto-fit,minmax(185px,1fr))}
+  .two{grid-template-columns:1fr}
+}
+@media(max-width:1024px){
+  body{padding:14px}
+  .app{gap:14px}
+  .side{top:14px;height:calc(100vh - 28px)}
+  .top{top:14px}
+  .stats{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+  .notif-panel{width:min(330px,88vw)}
+  .tbl-wrap{max-height:min(68vh,600px)}
+}
+@media(max-width:980px){
+  .c3,.c4,.c5,.c6,.c7,.c8{grid-column:span 12}
+  .grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .who span:not(.av){display:none}
+}
+@media(max-width:850px){
+  body{padding:12px}
+  .app{grid-template-columns:1fr;gap:14px}
+  .side{
+    position:fixed;left:12px;top:12px;bottom:12px;width:265px;height:auto;z-index:50;
+    transform:translateX(calc(-100% - 24px));transition:transform .3s cubic-bezier(.22,1,.36,1);
+  }
+  .side.open{transform:none}
+  .menubtn{display:grid}
+  .promo{display:none}
+  .top{position:static;flex-wrap:wrap}
+  .top .search{order:9;flex-basis:100%;max-width:none}
+  .who span:not(.av){display:none}
+  .grid3{grid-template-columns:1fr}
+  .head h1{font-size:26px}
+  .g12{grid-template-columns:repeat(6,1fr)}
+  .c3,.c4,.c5,.c6,.c7,.c8{grid-column:span 6}
+  .ubtn span{display:none}
+  .ubtn{padding:12px}
+  .two{grid-template-columns:1fr}
+  .gg{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .head h1{font-size:24px}
+  .card{padding:18px;border-radius:22px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tbl th,.tbl td{padding:9px 10px}
+  .tbl td.ell{max-width:26ch}
+  .notif-panel{width:min(330px,92vw)}
+  .form-actions{gap:12px}
+  .login-card{padding:26px 22px}
+  .sheet .body{padding:16px 16px 20px}
+}
+/* forms drop to a single column, and the modal body tightens its padding */
+@media(max-width:640px){
+  .form-grid,.grid2{grid-template-columns:1fr}
+  .sheet>form,.sheet>.body{padding:18px 18px 0}
+  .modal-h{padding:14px 18px}
+  .sheet>.form-actions{padding:12px 18px 16px}
+  .sheet>form .form-actions{margin-left:-18px;margin-right:-18px;padding:12px 18px 16px}
+  .sheet>p{padding:2px 18px 6px}
+  .media-prev{width:112px;height:112px}
+}
+@media(max-width:560px){
+  .g12{grid-template-columns:1fr}
+  .c3,.c4,.c5,.c6,.c7,.c8,.c12{grid-column:span 1}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat .n{font-size:30px}
+  .head h1{font-size:23px}
+  .sheet{padding:0;border-radius:22px}
+  .card{padding:17px;border-radius:20px}
+  .card-h h2{font-size:15.5px}
+  .login-card{padding:26px 20px;border-radius:24px}
+  /* the off-canvas sidebar is narrow here - shorten the mark so it stays
+     clear of the drawer edges and the nav under it */
+  .logo img{max-width:152px}
+  .login-logo{width:min(180px,58vw);margin-bottom:20px}
+  .notif-panel{width:min(330px,92vw)}
+  .donut{width:140px}
+  .donutwrap{gap:14px}
+  .tbl td.ell{max-width:20ch}
+}
+@media(max-width:400px){
+  .stats{grid-template-columns:1fr}
+  .gg{grid-template-columns:1fr}
+}
+@media(max-width:390px){
+  body{padding:10px}
+  .app{gap:12px}
+  .side{left:10px;top:10px;bottom:10px}
+  .card{padding:15px;border-radius:18px}
+  .stat{padding:18px;border-radius:20px}
+  .head h1{font-size:22px}
+  .btn{padding:11px 14px}
+  .form-actions .btn{flex:1 1 auto}
+  .login-card{padding:22px 16px}
+  .tbl-wrap{max-height:60vh}
+}
+
+/* ============================ 17. dashboard + shared bits ================= */
+/* P5: classes the pages use but sections 1-16 never styled - the dashboard
+   note box / review rows / avatars, heading tool rows, row-flash after a
+   save, the button spinner, plus the colour helpers index.php now uses
+   instead of inline styles. */
+
+/* heading tool row (buttons on the right of a card heading) */
+.h3-tools{display:flex;gap:8px;align-items:center;margin-left:auto}
+.card h3>.btn,.card h3>.chip{margin-left:auto}
+.empty.tight{padding:26px}
+
+/* spacing helpers */
+.mt14{margin-top:14px}
+.mt16{margin-top:16px}
+.mt18{margin-top:18px}
+
+/* note box (dashboard callout under the activity card) */
+.note{
+  display:flex;gap:12px;align-items:flex-start;
+  background:var(--tint);border:1px solid var(--bd);
+  border-radius:16px;padding:14px 16px;
+  font-size:12.8px;line-height:1.55;color:var(--mut);
+}
+.note b{color:var(--ink);display:block}
+.note .i{
+  width:22px;height:22px;flex:none;
+  fill:none;stroke:var(--g1);stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+
+/* initials avatar (tables, rows, cards) */
+.ph{
+  width:44px;height:44px;flex:none;border-radius:12px;
+  display:grid;place-items:center;overflow:hidden;
+  background:var(--track);color:var(--mut);
+  font-weight:800;font-size:15px;letter-spacing:-.02em;
+}
+
+/* dashboard: newest reviews list */
+.rev{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line)}
+.rev:first-of-type{border-top:0;padding-top:0}
+.rev .av{
+  width:38px;height:38px;border-radius:50%;flex:none;
+  display:grid;place-items:center;overflow:hidden;
+  font-weight:800;font-size:14px;
+}
+.rev .av.g-green{background:linear-gradient(135deg,#2f9e6a,#0e3b27);color:#fff}
+.rev-body{flex:1;min-width:0}
+.rev-name{font-size:13.4px}
+
+/* dashboard: newest accounts list */
+.mini{
+  display:grid;grid-template-columns:40px minmax(0,1fr) auto;
+  gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);
+}
+.mini:first-of-type{border-top:0;padding-top:0}
+.mini .ph{width:40px;height:40px;border-radius:50%;font-size:14px}
+.mini .ph.g-sand{background:linear-gradient(135deg,#c9a66b,#e6d3a8);color:#0e3b27}
+.mini-body{min-width:0;flex:1}
+.mini .r{
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+  justify-content:flex-end;font-size:11.8px;color:var(--mut);
+}
+
+/* stat card colour accents (a --c value on .stat) */
+.stat.c-blue{--c:#3f7fa8}
+.stat.c-gold{--c:#a97b2a}
+.stat.c-violet{--c:#7a5aa8}
+.stat.c-blue .ic{background:rgba(63,127,168,.16);color:#3f7fa8}
+.stat.c-gold .ic{background:rgba(169,123,42,.16);color:#a97b2a}
+.stat.c-violet .ic{background:rgba(122,90,168,.16);color:#7a5aa8}
+.stat.c-blue:before{background:rgba(63,127,168,.14)}
+.stat.c-gold:before{background:rgba(169,123,42,.14)}
+.stat.c-violet:before{background:rgba(122,90,168,.14)}
+
+/* LIVE pill in the site activity card */
+.new.live{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:3px 9px;border-radius:99px;
+  background:rgba(31,122,77,.14);color:var(--g1);
+}
+.new.live:before{
+  content:"";width:7px;height:7px;border-radius:50%;background:var(--g1);
+  animation:afpulse 1.4s ease-in-out infinite;
+}
+@keyframes afpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+
+/* legend + list dot colours (index.php picks a class, not a style) */
+.lg i.sw-green{background:#2f9e6a}
+.lg i.sw-sand{background:#c9a66b}
+.lg i.sw-blue{background:#3f7fa8}
+.list-plain .dot.d-green{background:#1f7a4d}
+.list-plain .dot.d-sage{background:#7fc29b}
+.list-plain .dot.d-sand{background:#c9a66b}
+.list-plain .dot.d-blue{background:#3f7fa8}
+
+/* first activity row has no divider above it */
+.tg-first{border-top:0;padding-top:0}
+/* second line under a switch label */
+.tg small{display:block;font-weight:500;color:var(--mut);font-size:11.5px}
+
+/* row flash after a save (footer.js adds .row-new for 2.6s) */
+tr.row-new{animation:afrrow 2.6s ease forwards}
+tr.row-new>td{background:rgba(31,122,77,.12);animation:afrrowbg 2.6s ease forwards}
+@keyframes afrrow{
+  0%{box-shadow:inset 0 0 0 2px var(--g1)}
+  70%{box-shadow:inset 0 0 0 2px rgba(31,122,77,.35)}
+  100%{box-shadow:inset 0 0 0 2px transparent}
+}
+@keyframes afrrowbg{0%,60%{background:rgba(31,122,77,.12)}100%{background:transparent}}
+
+/* busy spinner on buttons posted through AFAdmin.post() */
+.btn.is-busy{opacity:.9;pointer-events:none}
+.btn.is-busy::after{
+  content:"";display:inline-block;
+  width:12px;height:12px;margin-left:2px;
+  border:2px solid currentColor;border-top-color:transparent;border-radius:50%;
+  animation:afspin .7s linear infinite;
+}
+@keyframes afspin{to{transform:rotate(360deg)}}
+
+/* file picker label inside a drop zone */
+.drop small.drop-name{font-weight:500;font-size:12.5px;opacity:.85}
+
+/* ---- albums.php: track rows + attach / new-song rows --------------------- */
+.mgr{border-top:1px solid var(--line);padding-top:14px;margin-top:18px}
+.songlist{max-height:250px;overflow:auto;margin:0;padding:0;list-style:none}
+.songlist li{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 2px;border-bottom:1px solid var(--line);
+}
+.songlist .meta{min-width:0;flex:1}
+.songlist .meta small{display:block;color:var(--mut);font-size:11.5px}
+.songlist .dot{width:8px;height:8px;border-radius:50%;background:#2e86c1;flex:none}
+.attach-row{display:flex;gap:8px;margin-top:9px}
+.attach-row select{flex:1;min-width:0}
+.newsong{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;margin-top:12px}
+@media(max-width:640px){.newsong{grid-template-columns:1fr}}

@@ -1,0 +1,273 @@
+/* ==========================================================================
+   Showcase (Console + Featured Artists) CSS - Cloud AI Website
+   One merged section, dark transparent glass cards, soft theme glows
+   NOTE: all .card / .photo rules are scoped under .artists so they never
+   leak into other sections (e.g. the home Reviews cards).
+   ========================================================================== */
+
+/* ---------- Merged showcase wrapper (fully transparent: ONE texture behind) ---------- */
+.showcase {
+  position: relative;
+  color: #ffffff;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  margin: 0;
+}
+
+/* Small gap between the console block and the singers block */
+.showcase-gap {
+  height: clamp(48px, 5vw, 64px);
+}
+
+/* ---------- Featured Artists Section (id="artists") ---------- */
+.artists-section {
+  position: relative;
+  padding: 0 32px clamp(72px, 7vw, 110px);
+  margin: 0;
+  z-index: 5;
+}
+
+.artists {
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+/* ---------- Grid Layout (Exact geometry: 3 / 2 / 1 columns) ---------- */
+.artists .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 28px;
+  row-gap: 112px;
+  position: relative;
+  z-index: 5;
+}
+
+/* ---------- Dark Transparent Glass Card ---------- */
+.artists .card {
+  position: relative;
+  display: block;
+  aspect-ratio: 2.64 / 1;
+  border-radius: var(--card-radius, 22px);
+  text-decoration: none;
+  color: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .07) 0%, rgba(255, 255, 255, .12) 100%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  backdrop-filter: blur(24px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, .18);
+  box-shadow:
+    0 16px 36px -10px rgba(0, 0, 0, .65),
+    inset 0 1px 0 rgba(255, 255, 255, .3),
+    inset 0 -1px 0 rgba(0, 0, 0, .25);
+  cursor: pointer;
+
+  /* Scroll reveal state: fade + slight rise */
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity .7s cubic-bezier(.16, 1, .3, 1),
+    transform .5s cubic-bezier(.16, 1, .3, 1),
+    box-shadow .4s ease,
+    border-color .4s ease;
+}
+
+.artists .card.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Cursor-follow spotlight inside the card (subtle) */
+.artists .card-spotlight {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.13), transparent 70%);
+  opacity: 0;
+  transition: opacity .35s ease;
+  z-index: 1;
+}
+
+.artists .card:hover .card-spotlight,
+.artists .card:active .card-spotlight {
+  opacity: 1;
+}
+
+/* Hover / focus: clean 5px lift, border brightens to the theme colour */
+.artists .card.is-revealed:hover,
+.artists .card.is-revealed:focus-visible {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow:
+    0 24px 48px -10px rgba(0, 0, 0, .75),
+    0 0 28px -6px var(--accent),
+    inset 0 1px 0 rgba(255, 255, 255, .42);
+  transition:
+    opacity .7s cubic-bezier(.16, 1, .3, 1),
+    transform .35s cubic-bezier(.16, 1, .3, 1),
+    box-shadow .4s ease,
+    border-color .4s ease;
+}
+
+.artists .card:focus-visible {
+  outline: 3px solid var(--accent-soft);
+  outline-offset: 4px;
+}
+
+/* ---------- Glass Light Sweep Overlay ---------- */
+.artists .card-glass {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.artists .card-glass::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, .22) 50%, transparent 100%);
+  transform: skewX(-25deg);
+  pointer-events: none;
+  transition: none;
+}
+
+.artists .card:hover .card-glass::after,
+.artists .card:active .card-glass::after {
+  left: 150%;
+  transition: left .85s cubic-bezier(.2, .8, .2, 1);
+}
+
+/* ---------- Photo Box (head rises above the glass, never cropped) ---------- */
+.artists .photo {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  height: var(--h);
+  clip-path: inset(-60px -40px 0 0 round 0 0 0 var(--card-radius, 22px));
+  pointer-events: none;
+  z-index: 3;
+  transform: translateY(16px);
+  transition: transform .65s cubic-bezier(.16, 1, .3, 1) .15s;
+}
+
+.artists .card.is-revealed .photo {
+  transform: translateY(0);
+}
+
+.artists .photo img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left bottom;
+  display: block;
+  transform-origin: bottom center;
+  transition: transform .35s cubic-bezier(.16, 1, .3, 1);
+  will-change: transform;
+}
+
+/* Hover: photo scales 1.03 (never stretched, contain + fixed box) */
+.artists .card:hover .photo img,
+.artists .card:active .photo img {
+  transform: scale(1.03);
+}
+
+/* ---------- Info (Right Half) ---------- */
+.artists .card .info {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 50%;
+  padding: 0 22px 0 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  z-index: 4;
+}
+
+.artists .card .name {
+  font-family: var(--font-main);
+  font-size: clamp(19px, 1.85vw, 26px);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: .01em;
+}
+
+.artists .card .role {
+  font-family: var(--font-main);
+  font-size: clamp(11px, 1.05vw, 14px);
+  font-weight: 600;
+  color: var(--accent-soft);
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  transition: color 1s ease;
+}
+
+/* ---------- Responsive Breakpoints ---------- */
+@media (max-width: 980px) {
+  .artists .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .artists-section {
+    padding: 0 20px clamp(56px, 7vw, 88px);
+  }
+}
+
+@media (max-width: 620px) {
+  .artists .grid {
+    grid-template-columns: 1fr;
+    row-gap: 72px;
+  }
+  .artists .card .info {
+    padding: 0 16px 0 6px;
+  }
+}
+
+/* ---------- Touch devices: :active replaces hover ---------- */
+@media (hover: none) {
+  .artists .card.is-revealed:active {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+  }
+  .artists .card-spotlight {
+    display: none;
+  }
+}
+
+/* ---------- Reduced Motion Mode ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .artists .card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .artists .photo {
+    transform: none !important;
+    transition: none !important;
+  }
+  .artists .card:hover .photo img,
+  .artists .card:active .photo img {
+    transform: none !important;
+  }
+  .artists .card-glass::after,
+  .artists .card-spotlight {
+    display: none !important;
+  }
+}

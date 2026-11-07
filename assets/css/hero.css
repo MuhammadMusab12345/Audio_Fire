@@ -1,0 +1,823 @@
+/* ==========================================================================
+   Hero CSS - Cloud AI Website
+   Exact visual styling and animations from Final Hero Section
+   ========================================================================== */
+
+/* ---------- Hero Container ---------- */
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 640px;
+  height: 100vh;
+  height: 100svh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, .55) 100%);
+}
+
+/* Smoke lives ONLY inside the hero: .hero has overflow:hidden, so the canvas
+   can never paint past the hero onto the page texture below. */
+#smoke {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* ---------- Navbar (glassmorphism pill) ---------- */
+.nav-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  padding: 20px 32px 0;
+}
+
+.nav-wrap nav {
+  margin: 0 auto;
+  max-width: 1024px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  background: linear-gradient(90deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .15), rgba(255, 255, 255, .05));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .3);
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, .5), rgba(255, 255, 255, .08) 70%);
+  display: block;
+}
+
+.nav-wrap nav ul {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-wrap nav a {
+  color: rgba(255, 255, 255, .85);
+  text-decoration: none;
+  font-size: 15px;
+  transition: color .2s;
+}
+
+.nav-wrap nav a:hover {
+  color: #fff;
+}
+
+.burger {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.burger span {
+  width: 24px;
+  height: 3px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, .45);
+}
+
+/* ---------- Portrait ---------- */
+.portrait {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 82%;
+  width: 52%;
+}
+
+.portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+}
+
+.missing {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.missing div {
+  margin-bottom: 40px;
+  padding: 12px 16px;
+  border: 1px dashed rgba(255, 255, 255, .4);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, .3);
+  font-size: 12px;
+  text-align: center;
+  color: rgba(255, 255, 255, .8);
+}
+
+.portrait.is-missing img {
+  display: none;
+}
+
+.portrait.is-missing .missing {
+  display: flex;
+}
+
+/* ---------- Left info ---------- */
+.hero .info {
+  position: relative;
+  z-index: 20;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* NOT justify-content:center - auto margins (below) centre the block when
+     there is room, but collapse to 0 when the viewport is short, so the name
+     can never slide up under the fixed navbar pill and get cut. */
+  padding: calc(var(--nav-h, 72px) + 16px) 8vw 28px;
+}
+
+#names {
+  margin-top: auto;
+}
+
+.hero-card {
+  margin-bottom: auto;
+}
+
+.name-line {
+  position: relative;
+}
+
+/* Track list — now lives inside the glass card, so no outer margin/width cap */
+.tracks {
+  list-style: none;
+  margin: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(10px, 1.2vw, 18px);
+  font-size: clamp(10px, .82vw, 13px);
+  line-height: 1.4;
+}
+
+.tracks b {
+  display: block;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.tracks .a {
+  color: rgba(255, 255, 255, .6);
+}
+
+.tracks .y {
+  color: rgba(255, 255, 255, .4);
+}
+
+.all {
+  margin-top: clamp(18px, 2vw, 30px);
+  width: fit-content;
+  background: none;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .6);
+  border-radius: 2px;
+  padding: 6px 16px;
+  font: inherit;
+  font-size: clamp(11px, .85vw, 13px);
+  cursor: pointer;
+}
+
+.all:hover {
+  background: rgba(255, 255, 255, .1);
+}
+
+/* ---------- Glitch transition (data-phase on .hero: idle | out | in) ----------
+   7-stop slice keyframes stepped in 4s: digital, but with a smooth overall
+   arc. Each glitch group starts a beat apart so the swap reads as composed. */
+.hero[data-phase="out"] .glitch-target {
+  animation: glitch-out .32s steps(4, end) both;
+}
+
+.hero[data-phase="in"] .glitch-target {
+  animation: glitch-in .44s steps(4, end) both;
+}
+
+.hero[data-phase="out"] #portrait .glitch-target,
+.hero[data-phase="in"] #portrait .glitch-target {
+  animation-delay: 30ms;
+}
+
+.hero[data-phase="out"] .hero-card,
+.hero[data-phase="in"] .hero-card {
+  animation-delay: 65ms;
+}
+
+/* micro-jitter keeps every inner element alive during the transition */
+.hero:not([data-phase="idle"]) .name-line {
+  animation: micro-jitter .1s steps(2, end) infinite;
+}
+
+.hero:not([data-phase="idle"]) .hero-card > * {
+  animation: micro-jitter .12s steps(2, end) infinite;
+}
+
+/* RGB split haze on the name + card while the phase is running */
+.hero:not([data-phase="idle"]) #names {
+  filter: drop-shadow(-7px 0 rgba(255, 24, 96, .7)) drop-shadow(7px 0 rgba(0, 240, 255, .65));
+}
+
+.hero:not([data-phase="idle"]) .hero-card {
+  filter: drop-shadow(-6px 0 rgba(255, 24, 96, .45)) drop-shadow(6px 0 rgba(0, 240, 255, .4));
+}
+
+.hero[data-phase="out"] .bg {
+  animation: flicker .32s steps(5, end) both;
+}
+
+.hero[data-phase="in"] .bg {
+  animation: flicker .44s steps(6, end) both;
+}
+
+.rgb {
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.hero:not([data-phase="idle"]) .rgb {
+  opacity: .85;
+}
+
+.rgb-r {
+  filter: sepia(1) saturate(8) hue-rotate(-50deg);
+}
+
+.rgb-c {
+  filter: sepia(1) saturate(8) hue-rotate(150deg);
+}
+
+.hero[data-phase="out"] .rgb-r {
+  animation: rgb-r .3s steps(3, end) both;
+}
+
+.hero[data-phase="out"] .rgb-c {
+  animation: rgb-c .3s steps(3, end) both;
+}
+
+.hero[data-phase="in"] .rgb-r {
+  animation: rgb-r .4s steps(4, end) reverse both;
+}
+
+.hero[data-phase="in"] .rgb-c {
+  animation: rgb-c .4s steps(4, end) reverse both;
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .28) 0 1px, transparent 1px 3px);
+}
+
+.hero:not([data-phase="idle"]) .scanlines {
+  opacity: 1;
+}
+
+@keyframes glitch-out {
+  0%   { transform: translate(0); clip-path: inset(0 0 0 0); opacity: 1; }
+  14%  { transform: translate(-9px, 0); clip-path: inset(8% 0 62% 0); }
+  28%  { transform: translate(10px, 1px); clip-path: inset(60% 0 12% 0); opacity: .88; }
+  42%  { transform: translate(-6px, 0); clip-path: inset(30% 0 42% 0); opacity: .74; }
+  56%  { transform: translate(8px, -1px); clip-path: inset(2% 0 74% 0); opacity: .58; }
+  70%  { transform: translate(-5px, 2px); clip-path: inset(72% 0 4% 0); opacity: .42; }
+  84%  { transform: translate(6px, 0); clip-path: inset(24% 0 48% 0); opacity: .28; }
+  100% { transform: translate(0); clip-path: inset(0 0 0 0); opacity: .12; }
+}
+
+@keyframes glitch-in {
+  0%   { transform: translate(-8px, 0); clip-path: inset(44% 0 28% 0); opacity: .15; }
+  16%  { transform: translate(9px, 1px); clip-path: inset(6% 0 66% 0); opacity: .38; }
+  32%  { transform: translate(-6px, 0); clip-path: inset(62% 0 10% 0); opacity: .58; }
+  48%  { transform: translate(5px, -1px); clip-path: inset(28% 0 40% 0); opacity: .76; }
+  64%  { transform: translate(-4px, 1px); clip-path: inset(4% 0 78% 0); opacity: .9; }
+  80%  { transform: translate(3px, 0); clip-path: inset(70% 0 6% 0); opacity: .97; }
+  100% { transform: translate(0); clip-path: inset(0 0 0 0); opacity: 1; }
+}
+
+@keyframes micro-jitter {
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(1.5px, -1px); }
+  100% { transform: translate(-1.5px, 1px); }
+}
+
+@keyframes rgb-r {
+  0%   { transform: translate(-6px, 0); }
+  50%  { transform: translate(9px, -2px); }
+  100% { transform: translate(-3px, 1px); }
+}
+
+@keyframes rgb-c {
+  0%   { transform: translate(6px, 0); }
+  50%  { transform: translate(-9px, 2px); }
+  100% { transform: translate(3px, -1px); }
+}
+
+@keyframes flicker {
+  0%, 100% { filter: brightness(1); }
+  25%      { filter: brightness(1.5); }
+  50%      { filter: brightness(.7); }
+  75%      { filter: brightness(1.25); }
+}
+
+/* ---------- Hero bottom: fade the hero's OWN background layers into #bg-layer
+   An alpha mask (not a colour gradient): the fixed texture behind keeps its
+   colour at any scroll position, so no seam / colour jump can appear. ---------- */
+.bg,
+.vignette,
+#smoke,
+.scanlines,
+.portrait {
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 160px), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 160px), transparent 100%);
+}
+
+/* ==========================================================================
+   PER-SINGER GLASS CARD (rating + genres + tagline + bio + stats + tracks + CTA)
+   iPhone-style frosted glass, same look as the singers page (.g) card.
+   The artist NAME stays OUTSIDE; every other detail lives in this card.
+   Body copy is Inter; the singer name above stays Playfair Display 900.
+   ========================================================================== */
+.hero-card {
+  --font-card: "Inter", var(--font-main);
+
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(22px, 2.6vw, 36px);
+  max-width: clamp(300px, 36vw, 470px);
+  padding: clamp(20px, 1.9vw, 28px) clamp(22px, 2.1vw, 32px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(12px, 1.1vw, 16px);
+
+  border: 1px solid rgba(255, 255, 255, .34);
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .17), rgba(255, 255, 255, .05) 48%, rgba(255, 255, 255, .1));
+  -webkit-backdrop-filter: blur(30px) saturate(165%);
+  backdrop-filter: blur(30px) saturate(165%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .55),
+    inset 0 -14px 30px rgba(255, 255, 255, .05),
+    0 28px 60px rgba(0, 0, 0, .32),
+    0 0 0 1px color-mix(in srgb, var(--accent) 16%, transparent);
+
+  font-family: var(--font-card);
+  color: #fff;
+}
+
+/* soft light glint sweeping across the top-left of the glass */
+.hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 60% at 15% -10%, rgba(255, 255, 255, .4), transparent 55%);
+  pointer-events: none;
+}
+
+.hero-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hm-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, rgba(255, 255, 255, .3));
+  background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 22%, rgba(255, 255, 255, .12)), rgba(255, 255, 255, .06));
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 18px -6px color-mix(in srgb, var(--accent) 55%, transparent), inset 0 1px 0 rgba(255, 255, 255, .4);
+}
+
+.hm-stars {
+  display: flex;
+  gap: 3px;
+}
+
+.hm-star {
+  position: relative;
+  display: block;
+  width: 16px;
+  height: 16px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .45));
+}
+
+.hm-star svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hm-star-fill {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  clip-path: inset(0 calc(100% - var(--p, 1) * 100%) 0 0);
+}
+
+.hm-star-fill svg path {
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--accent) 80%, transparent));
+}
+
+.hm-score {
+  font-family: var(--font-card);
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: .05em;
+  color: #fff;
+  text-shadow: 0 0 10px color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+.hm-chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hm-chips li {
+  padding: 5px 13px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 60%, rgba(255, 255, 255, .25));
+  background: color-mix(in srgb, var(--accent) 16%, rgba(10, 6, 18, .4));
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  backdrop-filter: blur(10px) saturate(150%);
+  font-family: var(--font-card);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .92);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .28);
+  transition: border-color 1s ease, box-shadow .3s ease, transform .3s ease;
+}
+
+.hm-chips li:hover {
+  box-shadow: 0 0 14px -3px var(--accent), inset 0 1px 0 rgba(255, 255, 255, .35);
+  transform: translateY(-1px);
+}
+
+.hm-tagline {
+  font-family: var(--font-card);
+  font-weight: 600;
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--accent-soft) 30%, #fff);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, .35);
+}
+
+.hm-bio {
+  margin: -2px 0 0;
+  font-family: var(--font-card);
+  font-size: clamp(12px, .9vw, 13.5px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .68);
+}
+
+/* 3 key numbers: monthly listeners / top song / albums */
+.hm-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(8px, 1vw, 16px);
+  width: 100%;
+  padding: clamp(10px, .9vw, 14px) 0;
+  border-top: 1px solid rgba(255, 255, 255, .16);
+  border-bottom: 1px solid rgba(255, 255, 255, .16);
+}
+
+.hm-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.hm-stat-label {
+  font-family: var(--font-card);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--accent-soft) 40%, rgba(255, 255, 255, .55));
+  /* 2-line reserve so every stat VALUE stays on the same baseline,
+     even when "Monthly listeners" wraps in a narrow column */
+  min-height: 2.7em;
+}
+
+.hm-stat-value {
+  font-family: var(--font-card);
+  font-size: clamp(12.5px, .98vw, 15px);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: .01em;
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+
+.hm-cta {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, rgba(255, 255, 255, .35));
+  background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 45%, rgba(255, 255, 255, .14)), rgba(255, 255, 255, .07));
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 22px -8px color-mix(in srgb, var(--accent) 70%, transparent), inset 0 1px 0 rgba(255, 255, 255, .45);
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-card);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  transition: border-color .3s ease, box-shadow .3s ease, background .3s ease, transform .3s ease;
+}
+
+.hm-cta::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .35), transparent);
+  transform: skewX(-20deg);
+  transition: left .55s ease;
+}
+
+.hm-cta:hover::after,
+.hm-cta:focus-visible::after {
+  left: 130%;
+}
+
+.hm-cta:hover,
+.hm-cta:focus-visible,
+.hm-cta:active {
+  border-color: var(--accent);
+  background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 65%, rgba(255, 255, 255, .18)), rgba(255, 255, 255, .1));
+  box-shadow: 0 0 24px -4px var(--accent), inset 0 1px 0 rgba(255, 255, 255, .5);
+  transform: translateY(-2px);
+}
+
+/* Actions row: "All Tracks" + "Explore artists" sit together on the glass */
+.hm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+/* On the glass card, the .all button matches the CTA language */
+.hero-card .all {
+  margin-top: 0;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .4);
+  background: rgba(255, 255, 255, .1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  font-family: var(--font-card);
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
+  transition: background .3s ease, border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+}
+
+.hero-card .all:hover {
+  background: rgba(255, 255, 255, .2);
+  border-color: color-mix(in srgb, var(--accent) 60%, rgba(255, 255, 255, .4));
+  box-shadow: 0 0 18px -5px var(--accent), inset 0 1px 0 rgba(255, 255, 255, .4);
+  transform: translateY(-2px);
+}
+
+/* Track list polish (inside the glass card) */
+.hero-card .tracks b {
+  color: #fff;
+  letter-spacing: .07em;
+}
+
+.hero-card .tracks .a {
+  color: rgba(255, 255, 255, .62);
+  font-weight: 500;
+}
+
+.hero-card .tracks .y {
+  color: color-mix(in srgb, var(--accent) 55%, rgba(255, 255, 255, .5));
+  font-weight: 600;
+  letter-spacing: .08em;
+}
+
+/* ---------- Responsive ---------- */
+/* Tablet (768-1023): keep the side-by-side layout, but pull the portrait
+   further right and tighten the card so nothing overlaps. */
+@media (max-width: 1023px) {
+  .portrait {
+    width: 56%;
+  }
+  .hero .info {
+    padding: 0 6vw;
+  }
+  .hero-card {
+    max-width: clamp(280px, 38vw, 430px);
+  }
+}
+
+/* Phone / small tablet (<=767): stack the hero as
+   navbar -> name -> portrait -> card.
+   `.info { display: contents }` unwraps it so its children become direct
+   flex items of `.hero` and can be ordered independently of the portrait. */
+@media (max-width: 767px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 100svh;
+    padding: calc(var(--nav-h, 72px) + 18px) 0 56px;
+  }
+
+  .hero .info {
+    display: contents;
+  }
+
+  /* names need their own stacking context now that .info has no box */
+  #names {
+    order: 1;
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    margin-top: 0;
+    padding: 0 18px;
+    box-sizing: border-box;
+  }
+
+  /* centre the name (desktop uses an inline left-offset per line) */
+  #names .name-line {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  .portrait {
+    order: 2;
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: min(88%, 420px);
+    height: auto;
+    aspect-ratio: 3 / 4;
+    margin: 18px auto 0;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .portrait img {
+    object-position: center bottom;
+  }
+
+  .hero-card {
+    order: 3;
+    position: relative;
+    z-index: 20;
+    width: min(100% - 36px, 560px);
+    max-width: none;
+    margin: 26px auto 0;
+    align-items: stretch;
+    text-align: left;
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .hm-chips,
+  .hm-actions {
+    justify-content: flex-start;
+  }
+
+  .tracks {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Small phones (<=360): trim the card so nothing feels cramped */
+@media (max-width: 360px) {
+  #names {
+    padding: 0 12px;
+  }
+  .hero-card {
+    width: min(100% - 24px, 560px);
+    padding: 16px;
+    gap: 11px;
+    border-radius: 20px;
+  }
+  .hm-stat-label {
+    font-size: 8.5px;
+    letter-spacing: .1em;
+  }
+}
+
+/* Short desktop viewports: keep the card compact so the stack still fits */
+@media (max-height: 780px) and (min-width: 768px) {
+  .hm-tagline {
+    display: none;
+  }
+  .hero-card {
+    gap: 11px;
+    margin-top: 16px;
+    padding: 16px 22px;
+  }
+}
+
+@media (max-height: 660px) and (min-width: 768px) {
+  .hm-bio {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION - SOFTEN, NEVER REMOVE
+   The block that used to live here set `animation: none !important` on the
+   glitch targets, .bg, .rgb, .name-line and .hero-card > *, which killed the
+   8-second swap the moment the OS - or a headless browser - reported
+   `reduce`. The cycle still runs unconditionally; under `reduce` only the
+   amplitude drops: half the slice travel, no opacity below .55, and hero.js
+   slows the smoke drift (uTime x 0.4).
+   ========================================================================== */
+@keyframes glitch-out-soft {
+  0%   { transform: translate(0); clip-path: inset(0 0 0 0); opacity: 1; }
+  28%  { transform: translate(-4px, 0); clip-path: inset(14% 0 54% 0); opacity: .92; }
+  56%  { transform: translate(3px, 1px); clip-path: inset(46% 0 24% 0); opacity: .8; }
+  84%  { transform: translate(-2px, 0); clip-path: inset(30% 0 40% 0); opacity: .66; }
+  100% { transform: translate(0); clip-path: inset(0 0 0 0); opacity: .55; }
+}
+
+@keyframes glitch-in-soft {
+  0%   { transform: translate(-3px, 0); clip-path: inset(40% 0 30% 0); opacity: .6; }
+  32%  { transform: translate(3px, 1px); clip-path: inset(10% 0 62% 0); opacity: .74; }
+  64%  { transform: translate(-2px, 0); clip-path: inset(52% 0 18% 0); opacity: .88; }
+  100% { transform: translate(0); clip-path: inset(0 0 0 0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero[data-phase="out"] .glitch-target {
+    animation-name: glitch-out-soft;
+  }
+  .hero[data-phase="in"] .glitch-target {
+    animation-name: glitch-in-soft;
+  }
+}

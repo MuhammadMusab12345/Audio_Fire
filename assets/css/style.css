@@ -1,0 +1,241 @@
+/* ==========================================================================
+   SHARED page-level CSS - loaded on EVERY page (after navbar.css / footer.css)
+   1. Theme bridge: navbar, sidebars and footer glass read only
+      --theme-a / --theme-soft / --theme-mid (they fall back to their own
+      purple in navbar.css, this file maps them onto the page theme).
+      Pages with their own palette (music, reviews, account) override these
+      in their own stylesheet, which is loaded after this one.
+   2. Shared placeholder page shell (songs / album / playlists)
+   ========================================================================== */
+
+:root {
+  --theme-a: var(--accent);
+  --theme-soft: var(--accent-soft);
+  --theme-mid: var(--mid);
+}
+
+/* "Account" button marks itself when its own page is open (account.php) */
+.account-btn.active {
+  background: color-mix(in srgb, var(--theme-a) 42%, rgba(255, 255, 255, .16));
+  border-color: color-mix(in srgb, var(--theme-a) 55%, rgba(255, 255, 255, .32));
+}
+
+/* --------------------------------------------------------------------------
+   Placeholder pages: navbar + empty main + footer
+   -------------------------------------------------------------------------- */
+.page-main {
+  position: relative;
+  z-index: 1;
+  min-height: 62vh;
+}
+
+.placeholder-main {
+  position: relative;
+  z-index: 1;
+  min-height: 62vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: calc(var(--nav-h, 72px) + 60px) 24px 80px;
+}
+.placeholder-main h1 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(40px, 7vw, 92px);
+  line-height: .95;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.placeholder-main p {
+  margin-top: 16px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, .6);
+}
+
+/* ==========================================================================
+   SHARED SAVE / TOAST / BACK-TO-TOP UI (assets/js/save.js + site.js)
+   Everything is prefixed .af- and uses the site's glass look.
+   ========================================================================== */
+
+/* ---- heart button on song cards / rows / artist cards ------------------ */
+.af-save {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 6;                     /* above card art, below modals */
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 50%;
+  background: rgba(12, 8, 20, .55);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  color: rgba(255, 255, 255, .85);
+  cursor: pointer;
+  opacity: 0;                     /* fades in on hover / focus (see below) */
+  transform: scale(.85);
+  transition: opacity .2s ease, transform .2s ease, background .2s ease,
+              color .2s ease, border-color .2s ease;
+}
+.af-save svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.9; }
+.af-save:hover  { background: rgba(192, 75, 224, .35); border-color: rgba(192, 75, 224, .6); transform: scale(1.05); }
+.af-save:focus-visible { opacity: 1; transform: scale(1.05); outline: 2px solid #c04be0; outline-offset: 2px; }
+.af-save.on {
+  opacity: 1;
+  color: #ff5d8f;
+  border-color: rgba(255, 93, 143, .55);
+  background: rgba(255, 93, 143, .16);
+}
+.af-save.on svg { fill: currentColor; }
+/* cards reveal the heart on hover - cards without a save never change size */
+[data-save] { position: relative; }
+[data-save]:hover > .af-save,
+[data-save]:focus-within > .af-save { opacity: 1; transform: scale(1); }
+/* touch devices: always visible (no hover to reveal it) */
+@media (pointer: coarse) {
+  .af-save { opacity: 1; transform: scale(1); width: 42px; height: 42px; }
+}
+
+/* ---- navbar badge (count of saved songs + artists) --------------------- */
+.af-badge {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  border-radius: 9px;
+  background: linear-gradient(120deg, #c04be0, #ec4899);
+  color: #fff;
+  font: 700 10px/17px 'Space Grotesk', 'Montserrat', sans-serif;
+  text-align: center;
+  letter-spacing: .02em;
+  box-shadow: 0 0 0 2px rgba(10, 7, 16, .85);
+  transform: scale(0);
+  transition: transform .25s cubic-bezier(.34, 1.56, .64, 1);
+  pointer-events: none;
+}
+.af-badge.show { transform: scale(1); }
+
+/* ---- toasts (site.js) -------------------------------------------------- */
+.af-toasts {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.af-toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: min(92vw, 420px);
+  padding: 11px 18px 11px 12px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  background: rgba(14, 9, 22, .82);
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
+  color: #fff;
+  font: 500 13.5px/1.35 'Space Grotesk', 'Montserrat', sans-serif;
+  box-shadow: 0 18px 50px -18px rgba(0, 0, 0, .9);
+  opacity: 0;
+  transform: translateY(14px) scale(.96);
+  transition: opacity .25s ease, transform .25s ease;
+  pointer-events: auto;
+  cursor: pointer;
+}
+.af-toast.in { opacity: 1; transform: translateY(0) scale(1); }
+.af-toast i {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(192, 75, 224, .28);
+  color: #e9b6ff;
+  font: 700 12px/1 'Space Grotesk', sans-serif;
+  font-style: normal;
+  flex: 0 0 auto;
+}
+.af-toast--ok  i { background: rgba(16, 185, 129, .25); color: #7ff0cd; }
+.af-toast--err i { background: rgba(244, 63, 94, .25);  color: #ffb3c4; }
+
+/* ---- back to top (site.js) --------------------------------------------- */
+.af-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 900;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 50%;
+  background: rgba(14, 9, 22, .78);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease, background .2s ease;
+}
+.af-top svg { width: 20px; height: 20px; }
+.af-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.af-top:hover { background: rgba(192, 75, 224, .45); }
+.af-top:focus-visible { opacity: 1; outline: 2px solid #c04be0; outline-offset: 3px; }
+
+/* ---- busy state for buttons during AJAX (auth / review / contact) ------ */
+.af-busy {
+  position: relative;
+  pointer-events: none;
+  opacity: .75;
+}
+.af-busy::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, .35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: af-busy-spin .7s linear infinite;
+}
+@keyframes af-busy-spin { to { transform: rotate(360deg); } }
+
+/* ---- flashing "NEW" ribbon (doc: new additions get a flashing icon) ---- */
+.af-new {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: linear-gradient(120deg, #f59e0b, #f43f5e);
+  color: #fff;
+  font: 800 10px/1 'Space Grotesk', 'Montserrat', sans-serif;
+  letter-spacing: .12em;
+  box-shadow: 0 0 14px rgba(244, 63, 94, .55);
+  animation: af-new-flash 1.4s ease-in-out infinite;
+  vertical-align: middle;
+}
+@keyframes af-new-flash {
+  0%, 100% { box-shadow: 0 0 6px rgba(244, 63, 94, .35);  opacity: 1; }
+  50%      { box-shadow: 0 0 20px rgba(244, 63, 94, .85); opacity: .65; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .af-new { animation: none; }
+}

@@ -1,0 +1,162 @@
+/* ==========================================================================
+   AUDIO FIRE - SHARED FOOTER (transparent glass + water-ripple canvas)
+   Demo-only pieces removed: body background gradient, orbs, theme switcher,
+   demo .page block. The footer background is TRANSPARENT - it sits directly
+   on the page's own textured/theme background (no visible line, no seam).
+   Reads only: --theme-a / --theme-soft / --theme-mid (page theme bridge)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Manrope:wght@400;500;600;700&display=swap');
+
+.footer-wrap {
+  position: relative;
+  z-index: 5;
+  padding: 0 clamp(8px, 2vw, 28px);
+}
+
+.footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  font-family: Manrope, system-ui, sans-serif;
+  color: #f6f3fb;
+  border-radius: 44px 44px 0 0; /* only the two top corners are round */
+  padding: clamp(32px, 4vw, 56px) clamp(22px, 3.4vw, 48px) var(--wm-h, clamp(120px, 16vw, 260px));
+  /* transparent glass: white sheen + a faint tint of the current page theme */
+  background: linear-gradient(180deg,
+      color-mix(in srgb, var(--theme-a) 12%, rgba(255, 255, 255, .16)),
+      rgba(255, 255, 255, .05) 55%,
+      rgba(255, 255, 255, .03));
+  -webkit-backdrop-filter: blur(26px) saturate(1.7) brightness(1.08);
+  backdrop-filter: blur(26px) saturate(1.7) brightness(1.08);
+  border: 1px solid color-mix(in srgb, var(--theme-a) 16%, rgba(255, 255, 255, .26));
+  border-bottom: 0;
+  box-shadow:
+    inset 0 1.5px 0 rgba(255, 255, 255, .55),
+    inset 0 -30px 60px -30px rgba(255, 255, 255, .12),
+    inset 1px 0 0 rgba(255, 255, 255, .18),
+    inset -1px 0 0 rgba(255, 255, 255, .18),
+    0 -24px 70px -30px rgba(0, 0, 0, .45);
+  transition: background .8s ease, border-color .8s ease;
+}
+/* liquid specular light that follows the cursor */
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, .2), transparent 60%);
+  opacity: .9;
+  transition: opacity .4s;
+}
+/* thin refraction rim on top edge */
+.footer::after {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 0;
+  height: 1px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .9), transparent);
+}
+#ripple {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.footer a { color: inherit; text-decoration: none; }
+.footer :focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 6px; }
+
+/* ---------- glass columns ---------- */
+.cols {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr 1fr;
+  gap: 28px 24px;
+}
+.col h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  letter-spacing: .2px;
+  color: #fff;
+}
+.col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.col a {
+  font-size: 14.5px;
+  color: rgba(246, 243, 251, .74);
+  display: inline-block;
+  transition: color .25s, transform .25s;
+}
+.col a:hover { color: #fff; transform: translateX(4px); }
+
+/* brand column: logo + one-liner + social icons */
+.col.brand .footer-logo { display: inline-block; }
+.col.brand .footer-logo img {
+  width: 132px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+  background: transparent;
+}
+.col.brand .tag {
+  margin-top: 14px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: rgba(246, 243, 251, .78);
+  max-width: 30ch;
+}
+.col.brand .social { margin-top: 18px; }
+
+.rule {
+  height: 1px;
+  margin: clamp(26px, 3vw, 40px) 0 24px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .35), transparent);
+}
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.bottom .legal,
+.bottom .made { font-size: 15px; font-weight: 500; }
+.bottom .made { color: rgba(246, 243, 251, .74); }
+.social { display: flex; gap: 10px; }
+.social a {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .3);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .4);
+  transition: transform .3s cubic-bezier(.22, 1, .36, 1), background .3s;
+}
+.social a:hover { transform: translateY(-4px) scale(1.08); background: rgba(255, 255, 255, .28); }
+.social svg { width: 19px; height: 19px; }
+
+@media (max-width: 1000px) { .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) {
+  .footer { border-radius: 30px 30px 0 0; }
+  .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bottom { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .col a, .social a, .footer { transition: none; }
+}
